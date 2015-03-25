@@ -1,4 +1,4 @@
-There are 2 folders in the "src" folder, and they are both needed for compiling the project.
+There are 2 folders in this source code folder, and they are both needed for compiling the project.
 - "src" contains the source code of the HPA Dem Tool, which is written in Java. "UI/UI.java" is the entry point.
 - "lib" contains external libraries that should be included in Build Path for compiling the source code.
 
