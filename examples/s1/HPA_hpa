@@ -1,0 +1,28 @@
+5
+//States.size()=5
+1S1,2S1,P1S1 #1S2SINITIAL #1SINITIAL #INITIAL #P1SINITIAL #2SINITIAL #2S1SfP1SINITIAL 
+ERROR #ERROR 
+1S2,2S1,P1S2 #2SINITIAL 
+1S3,2S3,P1S3 
+1S4,2S3,P1S4 
+//Transitions.size()=21
+0 1Sb 2 1 
+0 2Sa 1 1 
+0 2Sb 1 1 
+0 1Sa 1 1 
+1 1Sb 1 1 
+1 2Sa 1 1 
+1 2Sb 1 1 
+1 1Sa 1 1 
+2 1Sb 1 1 
+2 2Sa 1 1 
+2 2Sb 3 1 
+2 1Sa 1 1 
+3 1Sb 1 1 
+3 2Sa 1 1 
+3 2Sb 1 1 
+3 1Sa 4 3/5 1 2/5 
+4 2Sa 1 1 
+4 1Sb 1 1 
+4 2Sb 1 1 
+4 1Sa 1 1 

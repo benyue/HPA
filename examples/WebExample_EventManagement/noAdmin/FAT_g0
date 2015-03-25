@@ -1,0 +1,28 @@
+//
+NFA g0 = {
+states = {Initial Default SearchTemp Admin LogIn AdminMenu AdmEvent AdmEventChoice AdmEventTemp AdmEventTemp1 End }
+//States.size()=11
+transitions = {
+//Transitions.size()=17
+Initial-Default->Default
+Default-Admin->Admin
+Default-Search->SearchTemp
+Admin-LoginError->LogIn
+Admin-LogIn->AdminMenu
+LogIn-LoginError->End
+LogIn-LogIn->AdminMenu
+AdminMenu-Event->AdmEvent
+AdmEvent-EventChoice->AdmEventChoice
+AdmEventChoice-Cancel->AdmEvent
+AdmEventChoice-IUD->AdmEventTemp
+AdmEventTemp-T->AdmEventTemp1
+AdmEventTemp1-T->End
+AdminMenu-LogOut->Admin
+AdmEvent-LogOut->Admin
+SearchTemp-T->End
+End-new->Initial
+}
+alphabet = {new T Cancel LogOut Search LoginError Event IUD LogIn Admin Default EventChoice }
+initial state = Initial
+final states = {End }
+}

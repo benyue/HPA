@@ -1,0 +1,30 @@
+9
+g1 w/ prefix 1S has 9 states, 13 transitions, and 8 symbols.
+Initial states: [0];
+Final states: [8]
+Symbols (8 totally):
+[1ShigherBid, 1Sbid, 1Spayment, T, 1Sitem, 1Stimeout, 1Snew, 1SlowerBid]
+States (9 totally):
+State id=0: value=1SInitial out-trans=[0] inputs=[1Sitem] Prop=[1SINITIAL]
+State id=1: value=1SItemPage out-trans=[1] inputs=[1Sbid] Prop=[]
+State id=2: value=1SNewBid out-trans=[4, 5] inputs=[1ShigherBid, 1SlowerBid] Prop=[]
+State id=3: value=1SNewBid0 out-trans=[2] inputs=[T] Prop=[]
+State id=4: value=1SNewBid1 out-trans=[3] inputs=[T] Prop=[]
+State id=5: value=1SBidUpdated out-trans=[6, 7, 8] inputs=[1Sbid, 1Stimeout, 1Sitem] Prop=[]
+State id=6: value=1SCheckOut out-trans=[9, 11] inputs=[1Spayment, 1Sitem] Prop=[]
+State id=7: value=1SFinal0 out-trans=[10] inputs=[T] Prop=[]
+State id=8: value=1SFinal out-trans=[12] inputs=[1Snew] Prop=[1SFINAL]
+Transitions (13 totally):
+Tran id=0: 1SInitial - 1Sitem -> 1SItemPage w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=1: 1SItemPage - 1Sbid -> 1SNewBid0 w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=2: 1SNewBid0 - T -> 1SNewBid1 w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=3: 1SNewBid1 - T -> 1SNewBid w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=4: 1SNewBid - 1ShigherBid -> 1SBidUpdated w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=5: 1SNewBid - 1SlowerBid -> 1SNewBid w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=6: 1SBidUpdated - 1Sbid -> 1SNewBid0 w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=7: 1SBidUpdated - 1Stimeout -> 1SCheckOut w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=8: 1SBidUpdated - 1Sitem -> 1SItemPage w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=9: 1SCheckOut - 1Spayment -> 1SFinal0 w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=10: 1SFinal0 - T -> 1SFinal w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=11: 1SCheckOut - 1Sitem -> 1SItemPage w/ pr=1 PropSatisfied=[1S] PropRequired=[]
+Tran id=12: 1SFinal - 1Snew -> 1SInitial w/ pr=1 PropSatisfied=[1S] PropRequired=[]

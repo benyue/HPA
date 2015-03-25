@@ -1,0 +1,30 @@
+9
+g0 w/ prefix  has 9 states, 13 transitions, and 8 symbols.
+Initial states: [0];
+Final states: [8]
+Symbols (8 totally):
+[new, item, T, higherBid, payment, lowerBid, bid, timeout]
+States (9 totally):
+State id=0: value=Initial out-trans=[0] inputs=[item] Prop=[INITIAL]
+State id=1: value=ItemPage out-trans=[1] inputs=[bid] Prop=[]
+State id=2: value=NewBid out-trans=[4, 5] inputs=[higherBid, lowerBid] Prop=[]
+State id=3: value=NewBid0 out-trans=[2] inputs=[T] Prop=[]
+State id=4: value=NewBid1 out-trans=[3] inputs=[T] Prop=[]
+State id=5: value=BidUpdated out-trans=[6, 7, 8] inputs=[item, bid, timeout] Prop=[]
+State id=6: value=CheckOut out-trans=[9, 11] inputs=[item, payment] Prop=[]
+State id=7: value=Final0 out-trans=[10] inputs=[T] Prop=[]
+State id=8: value=Final out-trans=[12] inputs=[new] Prop=[FINAL]
+Transitions (13 totally):
+Tran id=0: Initial - item -> ItemPage w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=1: ItemPage - bid -> NewBid0 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=2: NewBid0 - T -> NewBid1 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=3: NewBid1 - T -> NewBid w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=4: NewBid - higherBid -> BidUpdated w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=5: NewBid - lowerBid -> NewBid w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=6: BidUpdated - bid -> NewBid0 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=7: BidUpdated - timeout -> CheckOut w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=8: BidUpdated - item -> ItemPage w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=9: CheckOut - payment -> Final0 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=10: Final0 - T -> Final w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=11: CheckOut - item -> ItemPage w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=12: Final - new -> Initial w/ pr=1 PropSatisfied=[] PropRequired=[]

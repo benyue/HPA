@@ -1,0 +1,17 @@
+7
+1 #INITIAL
+2
+3
+4
+5 
+6
+7 #FINAL 
+
+1-a->2
+2-T->3
+1-b->4
+4-T->5
+5-a->6
+6-T->3
+3-T->7
+//Purpose: test adding failure defined for specific state and symbol

@@ -1,0 +1,176 @@
+	/**
+	 * 
+	 * Partially synchronized composition, automatically sync-ed on
+	 * shared/common symbols, which should be consistent with com.
+	 * 
+	 * All states and transitions generated in this function will be reachable.
+	 * 
+	 * @param g1
+	 * @param g2
+	 *            the two threads to be composed; one is the thread, the other
+	 *            is the property automata.
+	 * 
+	 * @param com
+	 *            contains the set of common symbols between g1 and g2; by
+	 *            default com = util.intersection(g1.symbols, g2.symbols);
+	 * */
+	public static CreateHPA PSComp(CreateHPA g1, CreateHPA g2) throws Exception {
+		Set<String> com = util.intersection(g1.symbols, g2.symbols);
+		CreateHPA g = new CreateHPA();
+		g.symbols = util.union(g1.symbols, g2.symbols);
+
+		Queue<Integer> Q = new LinkedList<Integer>();
+		Queue<Integer> q1 = new LinkedList<Integer>();
+		Queue<Integer> q2 = new LinkedList<Integer>();
+		// g.Q0
+		for (int i1 : g1.Q0) {
+			for (int i2 : g2.Q0) {
+				String v = g1.V.get(i1).name + "," + g2.V.get(i2).name;
+				CreateHPAState s = new CreateHPAState(g.V.size(), v);
+				s.prop.addAll(g1.V.get(i1).prop);
+				s.prop.addAll(g2.V.get(i2).prop);
+				// s.prop.add("INITIAL");
+				g.V.add(s);
+				Q.add(g.V.size() - 1);
+				q1.add(i1);
+				q2.add(i2);
+				g.Q0.add(g.V.size() - 1);
+			}
+		}
+		int v1 = 0, v2 = 0;
+		while (Q.size() > 0) {
+			int sid = Q.poll();
+			v1 = q1.poll();
+			v2 = q2.poll();
+
+			for (int i1 = 0; i1 <= g1.V.get(v1).outTransID.size(); i1++) {
+				int c1 = -1;
+				CreateHPATransition t1 = new CreateHPATransition();
+				if (g1.V.get(v1).outTransID.size() > 0
+						& g1.V.get(v1).outTransID.size() > i1) {
+					c1 = g1.V.get(v1).outTransID.get(i1);
+					t1 = g1.T.get(c1);
+				} else {
+					t1.input = "";
+				}
+
+				for (int i2 = 0; i2 < g2.V.get(v2).outTransID.size(); i2++) {
+					int c2 = g2.V.get(v2).outTransID.get(i2);
+					CreateHPATransition t2 = g2.T.get(c2);
+
+					if (g1.V.get(v1).outTransID.size() > 0
+							&& g1.V.get(v1).outTransID.size() > i1
+							&& com.contains(t1.input)
+							&& t1.input.equals(t2.input)) {// sync
+						String end = g1.V.get(t1.endID).name + ","
+								+ g2.V.get(t2.endID).name;
+						String a = t1.input;
+						g.V.get(sid).inputs.add(a);
+						int eid = g.findStateIDbyValue(end);
+						if (eid != -1) {
+							if (g.findTransitionIdBySourceEndInput(sid, eid, a) != -1)
+								continue;
+						} else {// if (eid == -1) {
+							CreateHPAState s = new CreateHPAState(g.V.size(),
+									end);
+							s.prop.addAll(g1.V.get(t1.endID).prop);
+							s.prop.addAll(g2.V.get(t2.endID).prop);
+							if (!g1.F.contains(t1.endID)
+									| !g2.F.contains(t2.endID)) {
+								s.prop.remove("FINAL");
+							}
+							if (!g1.Q0.contains(t1.endID)
+									| !g2.Q0.contains(t2.endID)) {
+								s.prop.remove("INITIAL");
+							}
+
+							g.V.add(s);
+							eid = g.V.size() - 1;
+							Q.add(eid);
+							q1.add(t1.endID);
+							q2.add(t2.endID);
+						}
+						g.T.add(new CreateHPATransition(g.T.size(), sid, a,
+								eid, (t1.pr.multiply(t2.pr))));
+						g.V.get(sid).outTransID.add(g.T.size() - 1);
+
+					}// sync ends
+					else {
+						String end = "", a = "";
+						int eid = -1;
+						// add s1 transitions
+						if (g1.V.get(v1).outTransID.size() > 0
+								& g1.V.get(v1).outTransID.size() > i1
+								& !com.contains(t1.input)) {
+							end = g1.V.get(t1.endID).name + ","
+									+ g2.V.get(v2).name;
+							a = t1.input;
+							g.V.get(sid).inputs.add(a);
+
+							eid = g.findStateIDbyValue(end);
+							if (eid != -1) {
+								if (g.findTransitionIdBySourceEndInput(sid,
+										eid, a) != -1)
+									continue;
+							} else {
+								CreateHPAState s = new CreateHPAState(
+										g.V.size(), end);
+								s.prop.addAll(g1.V.get(t1.endID).prop);
+								s.prop.addAll(g2.V.get(v2).prop);
+								if (!g1.F.contains(t1.endID)
+										| !g2.F.contains(v2)) {
+									s.prop.remove("FINAL");
+								}
+								if (!g1.Q0.contains(t1.endID)
+										| !g2.Q0.contains(v2)) {
+									s.prop.remove("INITIAL");
+								}
+								g.V.add(s);
+								eid = g.V.size() - 1;
+								Q.add(eid);
+								q1.add(t1.endID);
+								q2.add(v2);
+							}
+							g.T.add(new CreateHPATransition(g.T.size(), sid, a,
+									eid, (t1.pr)));
+							g.V.get(sid).outTransID.add(g.T.size() - 1);
+
+						}
+						// add s2 transitions
+						if (com.contains(t2.input))
+							continue;
+						end = g1.V.get(v1).name + "," + g2.V.get(t2.endID).name;
+						a = t2.input;
+						g.V.get(sid).inputs.add(a);
+						eid = g.findStateIDbyValue(end);
+						if (eid != -1) {
+							if (g.findTransitionIdBySourceEndInput(sid, eid, a) != -1)
+								continue;
+						} else {
+							CreateHPAState s = new CreateHPAState(g.V.size(),
+									end);
+							s.prop.addAll(g1.V.get(v1).prop);
+							s.prop.addAll(g2.V.get(t2.endID).prop);
+							if (!g1.F.contains(v1) | !g2.F.contains(t2.endID)) {
+								s.prop.remove("FINAL");
+							}
+							g.V.add(s);
+							eid = g.V.size() - 1;
+							Q.add(eid);
+							q1.add(v1);
+							q2.add(t2.endID);
+						}
+						g.T.add(new CreateHPATransition(g.T.size(), sid, a,
+								eid, (t2.pr)));
+						g.V.get(sid).outTransID.add(g.T.size() - 1);
+
+					}
+				}// for g2.V.get(v2).outTransID
+			}// for g1.V.get(v1).outTransID
+		}// end of while (Q.size() > 0)
+
+		g.updateFinalStates();// prop "FINAL"
+		g.updateInitialStates();
+
+		return g;
+	}

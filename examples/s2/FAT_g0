@@ -1,0 +1,18 @@
+//
+NFA g0 = {
+states = {0_1 1_2 2_3 3_4 4_5 5_6 }
+//States.size()=6
+transitions = {
+//Transitions.size()=7
+0_1-a1->1_2
+1_2-T1->2_3
+0_1-b1->3_4
+3_4-T1->4_5
+4_5-a1->5_6
+5_6-T1->2_3
+2_3-new1->0_1
+}
+alphabet = {new1 b1 a1 T1 }
+initial state = 0_1
+final states = {2_3 }
+}

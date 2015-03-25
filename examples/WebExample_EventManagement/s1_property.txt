@@ -1,0 +1,41 @@
+13
+Initial #INITIAL
+Default
+SearchTemp
+Admin
+LogIn
+AdminMenu
+AdmEvent
+AdmEventChoice
+AdmEventTemp
+AdmEventTemp1
+AdmEventTemp2
+SearchTemp1
+End #FINAL
+
+Initial-Default->Default
+Default-Admin->Admin #1S
+Default-Search->SearchTemp #1S
+///Admin-Default->Default #1S
+SearchTemp-T->SearchTemp1 #1S //
+SearchTemp1-T->End
+
+Admin-LoginError->LogIn #1S
+///Admin-Admin->Admin #1S
+Admin-LogIn->AdminMenu #1S
+//LogIn-LoginError->End #1S
+///LogIn-Admin->Admin #1S
+LogIn-LogIn->AdminMenu #1S
+///AdminMenu-Admin->Admin #1S
+AdminMenu-Event->AdmEvent #1S
+///AdmEvent-Admin->Admin #1S
+AdmEvent-EventChoice->AdmEventChoice #1S
+////AdmEventChoice-Cancel->AdmEvent #1S
+///AdmEventChoice-Admin->Admin #1S
+AdmEventChoice-IUD->AdmEventTemp #1S
+AdmEventTemp-T->AdmEventTemp1 #1S //
+AdmEventTemp1-T->AdmEventTemp2
+AdmEventTemp2-T->End
+//AdmEventTemp-T->AdmEvent AdmEventTemp-Admin->Admin
+////AdminMenu-LogOut->Admin #1S
+////AdmEvent-LogOut->Admin #1S

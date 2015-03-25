@@ -1,0 +1,16 @@
+//
+NFA g2g1fgp1S = {
+states = {1S1,2S1,P1S1 ERROR 1S2,2S1,P1S2 1S3,2S3,P1S3 1S4,2S3,P1S4 }
+//States.size()=5
+transitions = {
+//Transitions.size()=5
+1S1,2S1,P1S1-1Sb->1S2,2S1,P1S2
+1S2,2S1,P1S2-2Sb->1S3,2S3,P1S3
+1S3,2S3,P1S3-1Sa->1S4,2S3,P1S4
+1S3,2S3,P1S3-1Sa->ERROR
+1S4,2S3,P1S4-2Sa->ERROR
+}
+alphabet = {1Sb 2Sa 2Sb 1Sa }
+initial state = 1S1,2S1,P1S1
+final states = {}
+}

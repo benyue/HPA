@@ -1,0 +1,18 @@
+5
+g2 w/ prefix 2S has 5 states, 5 transitions, and 4 symbols.
+Initial states: [0];
+Final states: [4]
+Symbols (4 totally):
+[2Sa, 2Sb, T, 2Snew]
+States (5 totally):
+State id=0: value=2S0 out-trans=[0] inputs=[2Sa] Prop=[2SINITIAL]
+State id=1: value=2S1 out-trans=[1] inputs=[T] Prop=[]
+State id=2: value=2S2 out-trans=[2] inputs=[2Sb] Prop=[]
+State id=3: value=2S3 out-trans=[3] inputs=[T] Prop=[]
+State id=4: value=2S4 out-trans=[4] inputs=[2Snew] Prop=[2SFINAL]
+Transitions (5 totally):
+Tran id=0: 2S0 - 2Sa -> 2S1 w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=1: 2S1 - T -> 2S2 w/ pr=1 PropSatisfied=[2S] PropRequired=[required-for-triggering]
+Tran id=2: 2S2 - 2Sb -> 2S3 w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=3: 2S3 - T -> 2S4 w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=4: 2S4 - 2Snew -> 2S0 w/ pr=1 PropSatisfied=[2S] PropRequired=[]

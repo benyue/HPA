@@ -1,0 +1,19 @@
+7
+gp1S w/ prefix p1S has 7 states, and 7 transitions.
+Initial states: [0];
+Final states: [6]
+Symbols: [T, 1Sa, 1Sb]
+State id=0: value=p1S1 out-trans=[0, 2] inputs=[1Sa, 1Sb] Prop=[p1SINITIAL]
+State id=1: value=p1S2 out-trans=[1] inputs=[T] Prop=[]
+State id=2: value=p1S3 out-trans=[6] inputs=[T] Prop=[]
+State id=3: value=p1S4 out-trans=[3] inputs=[T] Prop=[]
+State id=4: value=p1S5 out-trans=[4] inputs=[1Sa] Prop=[]
+State id=5: value=p1S6 out-trans=[5] inputs=[T] Prop=[]
+State id=6: value=p1S7 out-trans=[] inputs=[] Prop=[p1SFINAL]
+Tran id=0: p1S1 - 1Sa -> p1S2 w/ pr=1 Prop=[]
+Tran id=1: p1S2 - T -> p1S3 w/ pr=1 Prop=[]
+Tran id=2: p1S1 - 1Sb -> p1S4 w/ pr=1 Prop=[]
+Tran id=3: p1S4 - T -> p1S5 w/ pr=1 Prop=[]
+Tran id=4: p1S5 - 1Sa -> p1S6 w/ pr=1 Prop=[]
+Tran id=5: p1S6 - T -> p1S3 w/ pr=1 Prop=[]
+Tran id=6: p1S3 - T -> p1S7 w/ pr=1 Prop=[]

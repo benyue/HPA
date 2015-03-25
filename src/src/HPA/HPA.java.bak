@@ -1,0 +1,432 @@
+package HPA;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.math3.fraction.Fraction;
+
+import Util.TarjanSCC;
+import Util.util;
+
+public class HPA{
+	
+	public ArrayList<BackwardAlgResult> bar 
+		= new ArrayList<BackwardAlgResult>(); //TODO
+
+	/**
+	 * Return true if the given graph is HPA. If there exits 1-a->2 and 1-a->3,
+	 * at most one of 2 and 3 can be strongly connected with 1 in a HPA.
+	 * @param cCSS = g.conflict_node_group
+	 * @param id was obtained from calling TarjanSCC_q0 for g.
+	 * */
+	public boolean isHPA(String cCSS, int[] id){
+		if (cCSS.isEmpty())
+			return true;
+
+		for (String s : cCSS.split(";")) {
+			if (s.isEmpty())
+				continue;
+			boolean sc = false; // record if there is already one end on the
+								// same level w/ source
+			List<Integer> nodes = util.parsePosIntegers(s);
+			int v = nodes.get(0);
+			for (int i = 1; i < nodes.size(); i++) {
+				int w = nodes.get(i);
+				if (v == w)
+					continue;
+				if (id[v] == id[w]) {
+					if (sc)
+						return false;
+					sc = true;
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Return the in-degrees of SCCs index corresponds to that of sccs.
+	 * Self-loops are NOT counted towards in-degrees
+	 * */
+	private int[] inDegreeOfSCC(PA g, TarjanSCC tjscc) {
+		int M = tjscc.count();
+		ArrayList<Integer>[] sccs = tjscc.sccs(); // size M
+		int[] sccHead = tjscc.head(); // size V
+
+		int[] inDegree = new int[M];
+		for (int i = 0; i < M; i++) {
+			ArrayList<Integer> scc = sccs[i];
+			ArrayList<Integer> inSCCs = new ArrayList<Integer>();
+			for (int n1 : scc) {
+				for (int j = 0; j < g.adj_in_int[n1].size(); j++) {
+					int n2 = g.adj_in_int[n1].get(j);
+					if (!inSCCs.contains(sccHead[n2])
+							&& sccHead[n1] != sccHead[n2]// exclude self-loops
+					) {
+						inDegree[i]++;
+						inSCCs.add(sccHead[n2]);
+					}
+				}
+			}
+
+		}
+		return inDegree;
+
+	}
+
+	/**
+	 * Return the neighboring next SCCs of each SCC index corresponds to that of
+	 * sccs; outSCCs excludes SCC itself even if it contains self-loop
+	 * */
+	@SuppressWarnings("unchecked")
+	private ArrayList<Integer>[] outSCCsOfSCC(PA g, TarjanSCC tjscc) {
+		int M = tjscc.count();
+		ArrayList<Integer>[] outSCCs = (ArrayList<Integer>[]) new ArrayList[M];
+		for (int i = 0; i < M; i++) {
+			outSCCs[i] = this.outSCCofSCCi(g, tjscc, i);
+		}
+		return outSCCs;
+	}
+
+	private ArrayList<Integer> outSCCofSCCi(PA g, TarjanSCC tjscc, int i) {
+		ArrayList<Integer> outSCC = new ArrayList<Integer>();
+		int[] id = tjscc.id(); // size V
+		ArrayList<Integer>[] sccs = tjscc.sccs(); // size M
+		ArrayList<Integer> scc = sccs[i];
+
+		for (int n1 : scc) {
+			for (int j = 0; j < g.adj_out_int[n1].size(); j++) {
+				int n2 = g.adj_out_int[n1].get(j);
+				if (!outSCC.contains(id[n2]) && id[n1] != id[n2] // excludes
+																	// self-loops
+				) {
+					outSCC.add(id[n2]);
+				}
+			}
+		}
+		return outSCC;
+	}
+
+	/**
+	 * Return the neighboring last SCCs of each SCC index corresponds to that of
+	 * SCCs; inSCCs excludes SCC itself even if it contains self-loop
+	 * */
+	@SuppressWarnings("unchecked")
+	private ArrayList<Integer>[] inSCCsOfSCC(PA g, TarjanSCC tjscc) {
+		int M = tjscc.count();
+		ArrayList<Integer>[] inSCCs = (ArrayList<Integer>[]) new ArrayList[M];
+		for (int i = 0; i < M; i++) {
+			inSCCs[i] = this.inSCCofSCCi(g, tjscc, i);
+		}
+		return inSCCs;
+	}
+
+	private ArrayList<Integer> inSCCofSCCi(PA g, TarjanSCC tjscc, int i) {
+		ArrayList<Integer> inSCC = new ArrayList<Integer>();
+		int[] id = tjscc.id(); // size V
+		ArrayList<Integer>[] sccs = tjscc.sccs(); // size M
+		ArrayList<Integer> scc = sccs[i];
+
+		for (int n1 : scc) {
+			for (int j = 0; j < g.adj_in_int[n1].size(); j++) {
+				int n2 = g.adj_in_int[n1].get(j);
+				if (!inSCC.contains(id[n2]) && id[n1] != id[n2] // excludes
+																// self-loops
+				) {
+					inSCC.add(id[n2]);
+				}
+			}
+		}
+		return inSCC;
+	}
+
+	/**
+	 * Assign levels to SCCs, indexing corresponds to that of sccs, as well as
+	 * inDegree, and outSCCs
+	 * TODO
+	 * */
+	public int[] levelSCCs(PA g, TarjanSCC tjscc) {
+		ArrayList<Integer>[] outSCCs = this.outSCCsOfSCC(g, tjscc);
+		ArrayList<Integer>[] inSCCs = this.inSCCsOfSCC(g, tjscc);
+		int[] ind = this.inDegreeOfSCC(g, tjscc);
+		int[] level = new int[ind.length];
+		for (int i = 0; i < ind.length; i++)
+			level[i] = -1;
+		// assign level 0
+		for (int idx : util.minNonNeg_idx(ind)) {
+			level[idx] = 0;
+			ind[idx]--;
+			for (int i = 0; i < outSCCs[idx].size(); i++) {
+				ind[outSCCs[idx].get(i)]--;
+			}
+		}
+		// assign levels to remaining SCCs until each SCC is assigned a level
+		int m = 0;
+		while (m >= 0) {
+			ArrayList<Integer> minind_scc_idx = util.minNonNeg_idx(ind);
+			for (int idx : minind_scc_idx) {
+				level[idx] = this.LevelSCC(idx,inSCCs[idx], level,g.conflict_node_group, tjscc);
+				ind[idx]--;
+				for (int i = 0; i < outSCCs[idx].size(); i++) {
+					ind[outSCCs[idx].get(i)]--;
+				}
+			}
+			m = util.minNonNegtive(ind);
+		}
+		return level;
+	}
+	
+	/**
+	 * Assign level to each node according to the level of the SCC it is in
+	 * @param levelSCC the level of each SCC
+	 * @param g 
+	 * */
+	public void levelNodes(PA g, TarjanSCC tjscc, int[] levelSCC){
+		//int M = levelSCC.length;
+		for(HPANode node:g.V){
+			node.level = levelSCC[tjscc.id[node.id]];
+		}
+	}
+
+	/**
+	 * Decide the level of a SCC according to levels of its inSCCs and conflict
+	 * SCCs
+	 * */
+	private int LevelSCC(int SCCidx, ArrayList<Integer> inSCC, int[] level,
+			String cSCC, TarjanSCC tjscc) {
+		Set<Integer> ll = new HashSet<Integer>();
+		for (int node : util.parsePosIntegers(cSCC)) {
+			cSCC = cSCC.replaceAll(";" + node + ",", ";" + tjscc.id(node)
+					+ "*,");
+			cSCC = cSCC.replaceAll("," + node + ",", "," + tjscc.id(node)
+					+ "*,");
+		}
+		for (String s : cSCC.split(";")) {//for each conflict group
+			if (s.isEmpty())
+				continue;
+			
+			
+			List<Integer> nodes = util.parsePosIntegers(s);
+			if (!nodes.contains(SCCidx))
+				continue;
+			if (nodes.get(0) == SCCidx)
+				continue;
+			if(Collections.frequency(nodes, SCCidx)>1){//&nodes.get(0)!=SCCidx
+				ll.add(level[nodes.get(0)] + 1);
+			}
+			for (int i = 1; i < nodes.size(); i++) {
+				if (nodes.get(i) == SCCidx)
+					continue;
+				if (level[nodes.get(0)] == level[nodes.get(i)]) { // 有其它SCC和sourceSCC同层
+					ll.add(level[nodes.get(0)] + 1);
+					break;
+				}
+			}
+		}
+		ll.add(0);
+		for (int j = 0; j < level.length; j++) {
+			if (j == SCCidx)
+				continue;
+			if (inSCC.contains(j))
+				ll.add(level[j]);
+		}
+		return Collections.max(ll);
+	}
+
+	public static void main(String[] args) throws Exception {
+
+	}
+
+	public String fwdCheckX(PA g, int qs, Fraction x, Long I) throws Exception{
+		String message = "";
+		boolean F0 = !g.obtainSetOnLevel(g.F, 0).isEmpty(); // true if F /cap L0
+															// is non-empty
+		for (int i = 0; i < I; i++) {// i = length of input strings, starts from 0
+			int count = 0;
+			for (int ws = 0; ws <= g.WSs.size() - 1; ws++) {
+				Fraction val = g.Val(ws, qs, x, i);
+				Vali_Probk v = g.WSs.get(ws).vali(i);
+				if (val.compareTo(Fraction.ZERO) < 0//val<0
+						|| (F0 && g.WSs.get(ws).isSuperGoodWS
+								&& val.compareTo(Fraction.ZERO) >= 0 //val >= 0
+								&& val.compareTo(Fraction.ONE) < 0)){//val < 1)) {
+					message = "Using forward alg, L(A) is non-empty with threshold x="
+									+ x + " at L=" + i+" at val= "+val.toString()+"\n";
+					//tracing back
+					String u = "";
+					while(i>-1){
+						u+= g.WSNodes(ws);
+						if(v.VALpreWSs_PROBKsuccessors.isEmpty() && v.pr.compareTo(x) == 0) break;//until {qs} is reached
+						ws = v.VALpreWSs_PROBKsuccessors.get(0);//TODO one trace only
+						u +="<-"+v.symbols+"<-";
+						i--;
+						v = g.WSs.get(ws).vali(i);
+					}
+					message += "Accepted sequence and runs: "+u+"\n";
+					return message;
+				}
+				if (val.compareTo(Fraction.ONE) >= 0)//(val >= 1)
+					count++;
+			}//for ws
+			if (count == g.WSs.size()) {
+				message = "Using forward alg, L(A) is empty with threshold x="
+								+ x + " at L=" + i+" \n";
+				return message;
+			}
+			
+/*			//convergent?!
+			if(i>1){
+				int conv = 0;
+				for (WitnessSet WS:g.WSs){
+					if(WS.val_i(i).compareTo(WS.val_i(i-1))!=0)
+						continue;
+					else conv++;
+				}
+				if(conv == g.WSs.size()){
+					System.out.println("forward convergence?! i="+i+" equal to i-1="+(i-1));
+				}
+			}*/
+		}//for i
+			
+		/*for(WitnessSet WS:g.WSs){
+			System.out.println("[WitnessSet "+WS.id+"] vali:");
+			for(Vali_Probk vp:WS.val){
+				System.out.print(vp.k+": "+vp.pr+"; ");
+			}
+			System.out.print("\n");
+		}*/
+		System.out.println("circle?");
+		
+		message = "Using forward alg, L(A) is empty with threshold x="
+				+ x + " within L=" + I+" \n";
+		return message;
+	}
+
+	public String bkdCheckX(PA g, int qs, Fraction x, long K) throws Exception {
+		String message = "";
+		BackwardAlgResult R = bkd(g,qs,K);
+		if(R.x.compareTo(x) > 0){//non-empty
+			message = "Using backward alg, L(A) is non-empty with threshold x="
+					+ x + " at L=" + R.k +" \n";
+			//tracing back TODO
+			return message;
+		}else{
+			message = "Using bakcward alg, L(A) is empty with threshold x="
+					+ x + " at L=" + R.k +" \n";
+			return message;
+		}
+		
+	}
+	
+	public String bkdCheckX_old(PA g, int qs, Fraction x, int K) throws Exception {
+		String message = "";
+		for (int k = 1; k < K; k++) { //k starts from 1
+			for (int ws = 0; ws <= g.WSs.size() - 1; ws++) {
+				WitnessSet W = g.WSs.get(ws);
+				Fraction probk = g.Prob_k_W(W, k);//calculate and store probk
+				Vali_Probk prk = W.probk(k);
+				/*System.out.println("probk_" + k + "_ws_" + ws + g.WSNodes(ws)
+						+ "=" + probk+
+						", with symbols "+prk.symbols+
+						",a_successors "+prk.VALpreWSs_PROBKsuccessors);
+						*/
+				if (W.q0 == qs && g.WSL1Nodes(ws).isEmpty() //W={qs}
+						&& probk.compareTo(x) == 1) {// probk > x) {
+					message = "Using backward alg, L(A) is non-empty with threshold x="
+									+ x + " on L=" + k + " ws_id=" + ws+" \n";
+					//tracing back
+					String u = "";
+					while(ws != -1 & k > -1){
+						Set<Integer> nodes = g.WSNodes(ws);
+						u += nodes + "->"+prk.symbols+"->";
+						ws = prk.VALpreWSs_PROBKsuccessors.isEmpty()?
+								-1: prk.VALpreWSs_PROBKsuccessors.get(0);//any one will lead to ws=-1
+						if(ws == -1){
+							Set<Integer> nodesF = new HashSet<Integer>();
+							for(String a:prk.symbols){
+								nodesF.addAll(util.intersection(g.post(nodes,a),g.F));
+							}
+							u += nodesF;
+							//u += g.F;
+							break;
+						}
+						k--;
+						W = g.WSs.get(ws);
+						prk = W.probk(k);
+					}
+					message += "Accepted sequence and runs: "+u+" \n";
+					return message;
+				}
+			}//for each WS
+		}//for each K
+		message = "Using bakcward alg, L(A) is empty with threshold x="
+						+ x + " within L=" + K +" \n";
+		return message;
+	}
+
+	/**
+	 * @return Vali_Probk: Pr, and L
+	 * */
+	public BackwardAlgResult bkd(PA g, int qs, long K) throws Exception {
+		Fraction xmax = Fraction.MINUS_ONE;
+		for (int k = 1; k < K; k++) {
+			Fraction xt = Fraction.ZERO; //for each K
+			for (int ws = 0; ws <= g.WSs.size() - 1; ws++){
+				WitnessSet W = g.WSs.get(ws);
+				Fraction probk = g.Prob_k_W(W, k);//calculate and store probk
+				//System.out.println("bkd: Prob("+ws+","+k+")="+probk.toString());
+				//Vali_Probk prk = W.probk(k);
+				if (W.q0 == qs && g.WSL1Nodes(ws).isEmpty() //W={qs}, non-empty
+						&& probk.compareTo(xt) == 1) {// probk > xt) {
+					xt = probk;
+				}
+			}//for each WS
+			if(xt.compareTo(xmax) > 0){//xt > xmax
+				xmax = xt;
+				//System.out.println("bkd: xmax updated to "+xmax+" at k = "+k);
+			}
+			
+			//K++, if every probk of WSs remains unchanged, terminates early. Fixed Point.
+			if(k==1) continue;
+			int conv = 0;
+			for (WitnessSet WS:g.WSs){
+				if(WS.prob_k(k).compareTo(WS.prob_k(k-1))!=0)
+					continue;
+				else conv++;
+			}
+			if(conv == g.WSs.size()){
+				/*
+				//print WitnessSets probk values
+				for(WitnessSet WS:g.WSs){
+					System.out.println("[WitnessSet "+WS.id+"] probk:");
+					for(Vali_Probk vp:WS.probk){
+						System.out.print(vp.k+": "+vp.pr+"; ");
+					}
+					System.out.print("\n");
+				}
+				*/
+				////return new Vali_Probk(xmax,k);
+				BackwardAlgResult bar =  new BackwardAlgResult(k,K,xmax);
+				this.bar.add(bar);
+				return bar;
+			}
+			
+		}//for each K
+		/*
+		//print WitnessSets probk values
+		for(WitnessSet WS:g.WSs){
+			System.out.println("[WitnessSet "+WS.id+"] ");
+			for(Vali_Probk vp:WS.probk){
+				System.out.print(vp.k+": "+vp.pr+"; ");
+			}
+			System.out.print("\n");
+		}
+		*/
+		//return new Vali_Probk(xmax,K);
+		BackwardAlgResult bar =  new BackwardAlgResult(K,K,xmax);
+		this.bar.add(bar);
+		return bar;
+	}
+}
