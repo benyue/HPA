@@ -9,3 +9,8 @@ and click Launch.
 
 Make sure you have Jave installed on your computer.
 And you may have to update your Java's security settings to add "http://www.cs.uic.edu" in the exception website list.
+
+For detailed instructions and manual, please refer to the Technical Report.
+
+Yue (Cindy) Ben
+03/25/2015
