@@ -51,9 +51,15 @@ public class CreateHPA {
 			while(s == null || s.equals("") || s.replaceAll(" ", "").isEmpty()) {
 				s = in.readLine().split("//")[0].trim();
 			}
-			int NV = Integer.parseInt(s); // V.size()
-			if (NV < 0)
-				throw new IllegalArgumentException("ERROR: # of vertices < 0");
+			int NV = 0;
+			try{
+				NV = Integer.parseInt(s); // V.size()
+			}catch(java.lang.NumberFormatException ne){
+				throw new NumberFormatException(
+						"ERROR: invalid file format");
+			}
+			if (NV <= 0)
+				throw new IllegalArgumentException("ERROR: # of vertices <= 0");
 			String tempV = "";
 			for (int v = 0; v < NV; v++) {
 				s = in.readLine().split("//")[0].trim();

@@ -600,15 +600,13 @@ public class UI extends javax.swing.JPanel {
 			log.setText("");// reset log textarea
 			
 			if(opFolderDir==null){
-				log.append("Please specify output folder. Exit.\n");
+				log.append("Please specify output folder for all generated files. Exit.\n");
 				return;
 			}
 			if (ProcessFile == null| PropertyFile == null) {
 				log.append("Please specify both process and property files. Exit.\n");
 				return;
 			}
-			log.append("Note: intermediate files will be output to the folder "
-					+ opFolderDir + ".\n");
 
 			ProcessFile = textProcessFile.getText();
 			PropertyFile = textPropertyFile.getText();
@@ -624,7 +622,8 @@ public class UI extends javax.swing.JPanel {
 			try {
 				g0 = new CreateHPA(in);
 			} catch (Exception e3) {
-				e3.printStackTrace();
+				log.append("ERROR in loading process file.\n"+e3.getMessage());
+				return;
 			}
 			// g0.RemoveUnreachable();
 			in.close();
@@ -839,7 +838,8 @@ public class UI extends javax.swing.JPanel {
 				log.append("Property file successfully determinized and stored into files "
 						+ gp.name + "_d.\n");
 			} catch (Exception e1) {
-				e1.printStackTrace();
+				log.append("ERROR in loading property file.\n"+e1.getMessage());
+				return;
 			}
 
 			String temphpaFile = opFolderDir + "/HPA_hpa";
@@ -989,8 +989,7 @@ public class UI extends javax.swing.JPanel {
 		try {
 			hpa = new PA(in);
 		} catch (Exception e1) {
-			log.append("Exception:"+e1.getMessage() + "\n");
-			e1.printStackTrace();
+			log.append("ERROR in loading HPA file.\n"+e1.getMessage());
 			return;
 		}
 		in.close();
