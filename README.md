@@ -6,12 +6,14 @@ This is a demo tool for presenting the implementation of several model checking 
 - Update your Java's security settings to add "http://www.cs.uic.edu" in the exception website list.
 
 [Quick Valuation & On-line Access]
+
 please visit the following webpage (IE browser recommended):
 http://www.cs.uic.edu/~yben/tools/HPA/dist_demo/launch.html
 and click Launch.
 This webpage and tool version is specially prepared for quick valuation of the HPA tool, with preloaded examples ready for Verification, and easy access to online examples.
 
 [Installation]
+
 HPA_(version).jar is the single executable file of the tool. Download it to your computer and run. 
 Or allternatively, download and run the HAP_(version).jnlp file, which will download the latest version of the Jar file.
 
