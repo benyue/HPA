@@ -1,0 +1,19 @@
+6
+g0 w/ prefix  has 6 states, and 6 transitions.
+Initial states: [0];
+Final states: [5]
+Symbols: [a, new, b, T]
+States (6 totally):
+State id=0: value=1 out-trans=[0] inputs=[b] Prop=[INITIAL]
+State id=1: value=2 out-trans=[1] inputs=[T] Prop=[]
+State id=2: value=3 out-trans=[2] inputs=[a] Prop=[]
+State id=3: value=4 out-trans=[3] inputs=[T] Prop=[]
+State id=4: value=5 out-trans=[4] inputs=[T] Prop=[]
+State id=5: value=6 out-trans=[5] inputs=[new] Prop=[FINAL]
+Transitions (6 totally):
+Tran id=0: 1 - b -> 2 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=1: 2 - T -> 3 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=2: 3 - a -> 4 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=3: 4 - T -> 5 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=4: 5 - T -> 6 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=5: 6 - new -> 1 w/ pr=1 PropSatisfied=[] PropRequired=[]

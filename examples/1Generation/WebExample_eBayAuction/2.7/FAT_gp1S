@@ -1,0 +1,23 @@
+//Property automata
+NFA gp1S = {
+states = {P1SInitial P1SItemPage P1SNewBid P1SNewBid0 P1SNewBid1 P1SNewBid2 P1SBidUpdated P1SCheckOut P1SFinal0 P1SFinal }
+//States.size()=10
+transitions = {
+//Transitions.size()=12
+P1SInitial-1Sitem->P1SItemPage
+P1SItemPage-1Sbid->P1SNewBid0
+P1SNewBid0-T->P1SNewBid1
+P1SNewBid1-T->P1SNewBid2
+P1SNewBid2-T->P1SNewBid
+P1SNewBid-1ShigherBid->P1SBidUpdated
+P1SNewBid-1SlowerBid->P1SNewBid
+P1SNewBid-T->P1SNewBid
+P1SBidUpdated-1Sbid->P1SNewBid0
+P1SBidUpdated-1Stimeout->P1SCheckOut
+P1SCheckOut-1Spayment->P1SFinal0
+P1SFinal0-T->P1SFinal
+}
+alphabet = {1ShigherBid 1Sbid 1Spayment T 1Sitem 1Stimeout 1SlowerBid }
+initial state = P1SInitial
+final states = {P1SFinal }
+}
