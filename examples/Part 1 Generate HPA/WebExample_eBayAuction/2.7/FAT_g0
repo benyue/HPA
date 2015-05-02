@@ -1,0 +1,24 @@
+//
+NFA g0 = {
+states = {Initial ItemPage NewBid NewBid0 NewBid1 BidUpdated CheckOut Final0 Final }
+//States.size()=9
+transitions = {
+//Transitions.size()=13
+Initial-item->ItemPage
+ItemPage-bid->NewBid0
+NewBid0-T->NewBid1
+NewBid1-T->NewBid
+NewBid-higherBid->BidUpdated
+NewBid-lowerBid->NewBid
+BidUpdated-bid->NewBid0
+BidUpdated-timeout->CheckOut
+BidUpdated-item->ItemPage
+CheckOut-payment->Final0
+Final0-T->Final
+CheckOut-item->ItemPage
+Final-new->Initial
+}
+alphabet = {new item T higherBid payment lowerBid bid timeout }
+initial state = Initial
+final states = {Final }
+}

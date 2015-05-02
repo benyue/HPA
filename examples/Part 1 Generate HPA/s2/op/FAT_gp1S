@@ -1,0 +1,18 @@
+//Property automata
+NFA gp1S = {
+states = {0_p1S1 1_p1S2 2_p1S3 3_p1S4 4_p1S5 5_p1S6 6_p1S7 }
+//States.size()=7
+transitions = {
+//Transitions.size()=7
+0_p1S1-1Sa1->1_p1S2
+1_p1S2-T1->2_p1S3
+0_p1S1-1Sb1->3_p1S4
+3_p1S4-T1->4_p1S5
+4_p1S5-1Sa1->5_p1S6
+5_p1S6-T1->2_p1S3
+2_p1S3-T1->6_p1S7
+}
+alphabet = {1Sb1 1Sa1 T1 }
+initial state = 0_p1S1
+final states = {6_p1S7 }
+}
