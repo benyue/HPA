@@ -1,0 +1,37 @@
+//
+NFA g0 = {
+states = {Initial Main SearchResult0 SearchResult ItemPage0 ItemPage Cart CheckOut Confirm0 Confirm1 Confirmation Final 1 2 3 4 5 6 }
+//States.size()=18
+transitions = {
+//Transitions.size()=26
+Initial-m->Main
+Main-m->Main
+Main-keyWords->SearchResult0
+SearchResult-keyWords->SearchResult0
+SearchResult0-T->SearchResult
+SearchResult-item->ItemPage0
+ItemPage0-T->ItemPage
+SearchResult-m->Main
+ItemPage-inStock->Cart
+ItemPage-outOfStock->ItemPage
+ItemPage-m->Main
+Cart-info->CheckOut
+Cart-m->Main
+CheckOut-payment->Confirm0
+Confirm0-T->Confirm1
+Confirm1-T->Confirmation
+CheckOut-m->Main
+Confirmation-m->Main
+Confirmation-end->Final
+Final-next->1
+1-b->2
+2-T->3
+3-a->4
+4-T->5
+5-T->6
+6-new->Initial
+}
+alphabet = {next keyWords a new item b m T outOfStock inStock payment end info }
+initial state = Initial
+final states = {6 }
+}
