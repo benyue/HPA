@@ -1,0 +1,83 @@
+mdp
+//Event Management
+
+module M1
+x1 : [0..10] init 0;
+f1 : bool init false;
+[Default](x1=0)->(x1'=1);
+[Admin](x1=1)->(x1'=2);
+[Search](x1=1)->(x1'=3);
+[LoginError](x1=2)->(x1'=4);
+[LogIn](x1=2)->(x1'=5);
+[LoginError](x1=4)->(x1'=10);
+[LogIn](x1=4)->(x1'=5);
+[Event](x1=5)->(x1'=6);
+[EventChoice](x1=6)->(x1'=7);
+[Cancel](x1=7)->(x1'=6);
+[IUD](x1=7)&(f1=true)->(x1'=8);
+[IUD](x1=7)&(f1=false)->2/3:(x1'=8)&(f1'=false)
+	+1/3:(x1'=8)&(f1'=true);
+[T](x1=8)&(f1=false)->(x1'=9);
+[T1](x1=8)&(f1=true)->(x1'=9);
+[T](x1=9)&(f1=false)->(x1'=10);
+[T1](x1=9)&(f1=true)->(x1'=10);
+[LogOut](x1=5)->(x1'=2);
+[LogOut](x1=6)->(x1'=2);
+[T](x1=3)&(f1=false)->(x1'=10);
+[T1](x1=3)&(f1=true)->(x1'=10);
+[new](x1=10)->(x1'=0);
+endmodule
+
+module M2
+x2 : [0..10] init 0;
+[Default](x2=0)->(x2'=1);
+[Admin](x2=1)->(x2'=2);
+[Search](x2=1)->(x2'=3);
+[LoginError](x2=2)->(x2'=4);
+[LogIn](x2=2)->(x2'=5);
+[LoginError](x2=4)->(x2'=10);
+[LogIn](x2=4)->(x2'=5);
+[Event](x2=5)->(x2'=6);
+[EventChoice](x2=6)->(x2'=7);
+[Cancel](x2=7)->(x2'=6);
+[IUD](x2=7)->(x2'=8);
+[T](x2=8)&(f1=false)->(x2'=9);
+[T2](x2=8)&(f1=true)->(x2'=9);
+[T](x2=9)&(f1=false)->(x2'=10);
+[T2](x2=9)&(f1=true)->(x2'=10);
+[LogOut](x2=5)->(x2'=2);
+[LogOut](x2=6)->(x2'=2);
+[T](x2=3)&(f1=false)->(x2'=10);
+[T2](x2=3)&(f1=true)->(x2'=10);
+[new](x2=10)->(x2'=0);
+endmodule
+
+module M1P
+x1p : [0..10] init 0;
+[Default](x1p=0)->(x1p'=1);
+[Admin](x1p=1)->(x1p'=2);
+[Search](x1p=1)->(x1p'=3);
+[LoginError](x1p=2)->(x1p'=4);
+[LogIn](x1p=2)->(x1p'=5);
+[LoginError](x1p=4)->(x1p'=10);
+[LogIn](x1p=4)->(x1p'=5);
+[Event](x1p=5)->(x1p'=6);
+[EventChoice](x1p=6)->(x1p'=7);
+[Cancel](x1p=7)->(x1p'=6);
+[IUD](x1p=7)->(x1p'=8);
+[T](x1p=8)->(x1p'=9);
+[T1](x1p=8)->(x1p'=9);
+[T2](x1p=8)->(x1p'=9);
+[T](x1p=9)->(x1p'=10);
+[T1](x1p=9)->(x1p'=10);
+[T2](x1p=9)->(x1p'=10);
+[T](x1p=10)->(x1p'=10);
+[T1](x1p=10)->(x1p'=10);
+[T2](x1p=10)->(x1p'=10);
+endmodule
+
+system
+(M1|| M2)||M1P //manual\ThePRISMLanguage\ProcessAlgebraOperators
+endsystem
+
+label "final" = (x1p=10) & (f1=true);

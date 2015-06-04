@@ -1,0 +1,79 @@
+mdp
+//eBay Auction
+
+module M1
+x1 : [0..8] init 0;
+f1 : bool init false;
+
+[item]x1=0 -> (x1'=1);
+[bid]x1=1& f1=true->(x1'=2);
+[bid]x1=1& f1=false->4/5:(x1'=2)&(f1'=false)
+	+ 1/5:(x1'=2)&(f1'=true);
+[T]x1=2  & f1=false ->  (x1'=3);
+[T1]x1=2  & f1=true ->  (x1'=3);
+[T]x1=3  & f1=false ->  (x1'=4);
+[T1]x1=3  & f1=true ->  (x1'=4);
+[higherBid]x1=4->(x1'=5);
+[lowerBid]x1=4->(x1'=4);
+[bid]x1=5& f1=true->(x1'=2);
+[bid]x1=5& f1=false->4/5:(x1'=2)&(f1'=false)
+	+ 1/5:(x1'=2)&(f1'=true);
+[timeout]x1=5->(x1'=6);
+[item]x1=5->(x1'=1);
+[payment]x1=6 & f1=true-> (x1'=7);
+[payment]x1=6& f1=false->5/9:(x1'=7)&(f1'=false)
+	+ 4/9:(x1'=7)&(f1'=true);
+[T]x1=7  & f1=false ->  (x1'=8);
+[T1]x1=7  & f1=true ->  (x1'=8);
+[new]x1=8 & f1=false-> (x1'=0);
+endmodule
+
+module M2
+x2 : [0..8] init 0;
+
+[item2]x2=0 -> (x2'=1);
+[bid2]x2=1->(x2'=2);
+[T]x2=2  & f1=false ->  (x2'=3);
+[T2]x2=2  & f1=true ->  (x2'=3);
+[T]x2=3  & f1=false ->  (x2'=4);
+[T2]x2=3  & f1=true ->  (x2'=4);
+[higherBid2]x2=4->(x2'=5);
+[lowerBid2]x2=4->(x2'=4);
+[bid2]x2=5->(x2'=2);
+[timeout2]x2=5->(x2'=6);
+[item2]x2=5->(x2'=1);
+[payment2]x2=6 -> (x2'=7);
+[T]x2=7  & f1=false ->  (x2'=8);
+[T2]x2=7  & f1=true ->  (x2'=8);
+[new2]x2=8 & f1=false-> (x2'=0);
+endmodule
+
+module M1P
+x1p : [0..8] init 0;
+[item]x1p=0 -> (x1p'=1);
+[bid]x1p=1->(x1p'=2);
+[T]x1p=2->  (x1p'=3);
+[T1]x1p=2->  (x1p'=3);
+[T2]x1p=2->  (x1p'=3);
+[T]x1p=3->  (x1p'=4);
+[T1]x1p=3->  (x1p'=4);
+[T2]x1p=3->  (x1p'=4);
+[T]x1p=4->  (x1p'=4);
+[T1]x1p=4->  (x1p'=4);
+[T2]x1p=4->  (x1p'=4);
+[higherBid]x1p=4->(x1p'=5);
+[lowerBid]x1p=4->(x1p'=4);
+[bid]x1p=5->(x1p'=2);
+[timeout]x1p=5->(x1p'=6);
+[item]x1p=5->(x1p'=1);
+[payment]x1p=6-> (x1p'=7);
+[T]x1p=7->  (x1p'=8);
+[T1]x1p=7->  (x1p'=8);
+[T2]x1p=7->  (x1p'=8);
+endmodule
+
+system
+(M1|| M2)||M1P //manual\ThePRISMLanguage\ProcessAlgebraOperators
+endsystem
+
+label "final" = (x1p=8) & (f1=true);

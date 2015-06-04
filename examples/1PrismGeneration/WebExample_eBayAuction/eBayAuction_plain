@@ -1,0 +1,590 @@
+188
+Initial states: [0];
+Final states: [161, 163, 179, 180, 165, 183, 184, 185, 155]
+Symbols (17 totally):
+[new2, new, item2, item, payment2, higherBid, timeout2, higherBid2, timeout, lowerBid2, T, payment, bid2, lowerBid, bid, T1, T2]
+States (188 totally):
+State id=0: name=(0,false,0,0); in-states=[]; out-states=[2, 12]; Props=#init 
+State id=1: name=(0,false,0,8); in-states=[11, 170]; out-states=[3]; Props=
+State id=2: name=(0,false,1,0); in-states=[0]; out-states=[4, 13]; Props=
+State id=3: name=(0,false,1,8); in-states=[1, 8, 171]; out-states=[5]; Props=
+State id=4: name=(0,false,2,0); in-states=[2]; out-states=[14]; Props=
+State id=5: name=(0,false,2,8); in-states=[3, 8, 172]; out-states=[]; Props=#deadlock 
+State id=6: name=(0,false,3,8); in-states=[173]; out-states=[]; Props=#deadlock 
+State id=7: name=(0,false,4,8); in-states=[7, 174]; out-states=[7, 8]; Props=
+State id=8: name=(0,false,5,8); in-states=[7, 175]; out-states=[9, 5, 3]; Props=
+State id=9: name=(0,false,6,8); in-states=[8, 176]; out-states=[10]; Props=
+State id=10: name=(0,false,7,8); in-states=[9, 177]; out-states=[]; Props=#deadlock 
+State id=11: name=(0,false,8,8); in-states=[178]; out-states=[1]; Props=
+State id=12: name=(1,false,0,1); in-states=[0, 20, 108]; out-states=[13, 30, 39]; Props=
+State id=13: name=(1,false,1,1); in-states=[2, 12, 17, 109]; out-states=[14, 31, 40]; Props=
+State id=14: name=(1,false,2,1); in-states=[4, 13, 17, 110]; out-states=[32, 43]; Props=
+State id=15: name=(1,false,3,1); in-states=[111]; out-states=[33, 46]; Props=
+State id=16: name=(1,false,4,1); in-states=[16, 112]; out-states=[16, 17, 34, 49]; Props=
+State id=17: name=(1,false,5,1); in-states=[16, 113]; out-states=[18, 14, 13, 35, 52]; Props=
+State id=18: name=(1,false,6,1); in-states=[17, 114]; out-states=[19, 36, 55]; Props=
+State id=19: name=(1,false,7,1); in-states=[18, 115]; out-states=[37, 58]; Props=
+State id=20: name=(1,false,8,1); in-states=[116]; out-states=[12, 38, 61]; Props=
+State id=21: name=(1,true,0,1); in-states=[117]; out-states=[22, 39]; Props=
+State id=22: name=(1,true,1,1); in-states=[21, 26, 118]; out-states=[23, 40]; Props=
+State id=23: name=(1,true,2,1); in-states=[22, 26, 119]; out-states=[43]; Props=
+State id=24: name=(1,true,3,1); in-states=[120]; out-states=[46]; Props=
+State id=25: name=(1,true,4,1); in-states=[25, 121]; out-states=[25, 26, 49]; Props=
+State id=26: name=(1,true,5,1); in-states=[25, 122]; out-states=[27, 23, 22, 52]; Props=
+State id=27: name=(1,true,6,1); in-states=[26, 123]; out-states=[28, 55]; Props=
+State id=28: name=(1,true,7,1); in-states=[27, 124]; out-states=[58]; Props=
+State id=29: name=(1,true,8,1); in-states=[125]; out-states=[61]; Props=
+State id=30: name=(2,false,0,2); in-states=[12, 38, 108]; out-states=[31]; Props=
+State id=31: name=(2,false,1,2); in-states=[13, 30, 35, 109]; out-states=[32]; Props=
+State id=32: name=(2,false,2,2); in-states=[14, 31, 35, 110]; out-states=[67]; Props=
+State id=33: name=(2,false,3,2); in-states=[15, 111]; out-states=[68]; Props=
+State id=34: name=(2,false,4,2); in-states=[16, 34, 112]; out-states=[34, 35]; Props=
+State id=35: name=(2,false,5,2); in-states=[17, 34, 113]; out-states=[36, 32, 31]; Props=
+State id=36: name=(2,false,6,2); in-states=[18, 35, 114]; out-states=[37]; Props=
+State id=37: name=(2,false,7,2); in-states=[19, 36, 115]; out-states=[72]; Props=
+State id=38: name=(2,false,8,2); in-states=[20, 116]; out-states=[30]; Props=
+State id=39: name=(2,true,0,2); in-states=[12, 21, 108, 117]; out-states=[40, 73]; Props=
+State id=40: name=(2,true,1,2); in-states=[13, 22, 39, 52, 109, 118]; out-states=[43, 74]; Props=
+State id=41: name=(2,true,1,3); in-states=[53]; out-states=[44, 75]; Props=
+State id=42: name=(2,true,1,4); in-states=[54]; out-states=[45, 75]; Props=
+State id=43: name=(2,true,2,2); in-states=[14, 23, 40, 52, 110, 119]; out-states=[47, 76]; Props=
+State id=44: name=(2,true,2,3); in-states=[41, 53]; out-states=[48, 77]; Props=
+State id=45: name=(2,true,2,4); in-states=[42, 54]; out-states=[48, 77]; Props=
+State id=46: name=(2,true,3,2); in-states=[15, 24, 111, 120]; out-states=[50, 78]; Props=
+State id=47: name=(2,true,3,3); in-states=[43]; out-states=[51, 79]; Props=
+State id=48: name=(2,true,3,4); in-states=[44, 45]; out-states=[51, 79]; Props=
+State id=49: name=(2,true,4,2); in-states=[16, 25, 49, 112, 121]; out-states=[49, 52, 80]; Props=
+State id=50: name=(2,true,4,3); in-states=[46, 50]; out-states=[50, 53, 81]; Props=
+State id=51: name=(2,true,4,4); in-states=[47, 48, 51]; out-states=[51, 54, 81]; Props=
+State id=52: name=(2,true,5,2); in-states=[17, 26, 49, 113, 122]; out-states=[55, 43, 40, 82]; Props=
+State id=53: name=(2,true,5,3); in-states=[50]; out-states=[56, 44, 41, 83]; Props=
+State id=54: name=(2,true,5,4); in-states=[51]; out-states=[57, 45, 42, 83]; Props=
+State id=55: name=(2,true,6,2); in-states=[18, 27, 52, 114, 123]; out-states=[58, 84]; Props=
+State id=56: name=(2,true,6,3); in-states=[53]; out-states=[59, 85]; Props=
+State id=57: name=(2,true,6,4); in-states=[54]; out-states=[60, 85]; Props=
+State id=58: name=(2,true,7,2); in-states=[19, 28, 55, 115, 124]; out-states=[62, 86]; Props=
+State id=59: name=(2,true,7,3); in-states=[56]; out-states=[63, 87]; Props=
+State id=60: name=(2,true,7,4); in-states=[57]; out-states=[63, 87]; Props=
+State id=61: name=(2,true,8,2); in-states=[20, 29, 116, 125]; out-states=[88]; Props=
+State id=62: name=(2,true,8,3); in-states=[58]; out-states=[89]; Props=
+State id=63: name=(2,true,8,4); in-states=[59, 60]; out-states=[89]; Props=
+State id=64: name=(3,false,0,3); in-states=[72]; out-states=[65]; Props=
+State id=65: name=(3,false,1,3); in-states=[64, 69]; out-states=[66]; Props=
+State id=66: name=(3,false,2,3); in-states=[65, 69]; out-states=[93]; Props=
+State id=67: name=(3,false,3,3); in-states=[32]; out-states=[94]; Props=
+State id=68: name=(3,false,4,3); in-states=[33, 68]; out-states=[68, 69]; Props=
+State id=69: name=(3,false,5,3); in-states=[68]; out-states=[70, 66, 65]; Props=
+State id=70: name=(3,false,6,3); in-states=[69]; out-states=[71]; Props=
+State id=71: name=(3,false,7,3); in-states=[70]; out-states=[98]; Props=
+State id=72: name=(3,false,8,3); in-states=[37]; out-states=[64]; Props=
+State id=73: name=(3,true,0,3); in-states=[39]; out-states=[74, 99]; Props=
+State id=74: name=(3,true,1,3); in-states=[40, 73, 82]; out-states=[76, 100]; Props=
+State id=75: name=(3,true,1,4); in-states=[41, 42, 83]; out-states=[77, 100]; Props=
+State id=76: name=(3,true,2,3); in-states=[43, 74, 82]; out-states=[79, 101]; Props=
+State id=77: name=(3,true,2,4); in-states=[44, 45, 75, 83]; out-states=[79, 101]; Props=
+State id=78: name=(3,true,3,3); in-states=[46]; out-states=[81, 102]; Props=
+State id=79: name=(3,true,3,4); in-states=[47, 48, 76, 77]; out-states=[81, 102]; Props=
+State id=80: name=(3,true,4,3); in-states=[49, 80]; out-states=[80, 82, 103]; Props=
+State id=81: name=(3,true,4,4); in-states=[50, 51, 78, 79, 81]; out-states=[81, 83, 103]; Props=
+State id=82: name=(3,true,5,3); in-states=[52, 80]; out-states=[84, 76, 74, 104]; Props=
+State id=83: name=(3,true,5,4); in-states=[53, 54, 81]; out-states=[85, 77, 75, 104]; Props=
+State id=84: name=(3,true,6,3); in-states=[55, 82]; out-states=[86, 105]; Props=
+State id=85: name=(3,true,6,4); in-states=[56, 57, 83]; out-states=[87, 105]; Props=
+State id=86: name=(3,true,7,3); in-states=[58, 84]; out-states=[89, 106]; Props=
+State id=87: name=(3,true,7,4); in-states=[59, 60, 85]; out-states=[89, 106]; Props=
+State id=88: name=(3,true,8,3); in-states=[61]; out-states=[107]; Props=
+State id=89: name=(3,true,8,4); in-states=[62, 63, 86, 87]; out-states=[107]; Props=
+State id=90: name=(4,false,0,4); in-states=[90, 98]; out-states=[91, 90, 108]; Props=
+State id=91: name=(4,false,1,4); in-states=[90, 91, 95]; out-states=[92, 91, 109]; Props=
+State id=92: name=(4,false,2,4); in-states=[91, 92, 95]; out-states=[92, 110]; Props=
+State id=93: name=(4,false,3,4); in-states=[66, 93]; out-states=[93, 111]; Props=
+State id=94: name=(4,false,4,4); in-states=[67, 94, 94]; out-states=[94, 95, 94, 112]; Props=
+State id=95: name=(4,false,5,4); in-states=[94, 95]; out-states=[96, 92, 91, 95, 113]; Props=
+State id=96: name=(4,false,6,4); in-states=[95, 96]; out-states=[97, 96, 114]; Props=
+State id=97: name=(4,false,7,4); in-states=[96, 97]; out-states=[97, 115]; Props=
+State id=98: name=(4,false,8,4); in-states=[71, 98]; out-states=[90, 98, 116]; Props=
+State id=99: name=(4,true,0,4); in-states=[73, 99]; out-states=[100, 99, 117]; Props=
+State id=100: name=(4,true,1,4); in-states=[74, 75, 99, 100, 104]; out-states=[101, 100, 118]; Props=
+State id=101: name=(4,true,2,4); in-states=[76, 77, 100, 101, 104]; out-states=[102, 101, 119]; Props=
+State id=102: name=(4,true,3,4); in-states=[78, 79, 101, 102]; out-states=[103, 102, 120]; Props=
+State id=103: name=(4,true,4,4); in-states=[80, 81, 102, 103, 103]; out-states=[103, 104, 103, 121]; Props=
+State id=104: name=(4,true,5,4); in-states=[82, 83, 103, 104]; out-states=[105, 101, 100, 104, 122]; Props=
+State id=105: name=(4,true,6,4); in-states=[84, 85, 104, 105]; out-states=[106, 105, 123]; Props=
+State id=106: name=(4,true,7,4); in-states=[86, 87, 105, 106]; out-states=[107, 106, 124]; Props=
+State id=107: name=(4,true,8,4); in-states=[88, 89, 106, 107]; out-states=[107, 125]; Props=
+State id=108: name=(5,false,0,5); in-states=[90, 116]; out-states=[109, 126, 30, 39, 12]; Props=
+State id=109: name=(5,false,1,5); in-states=[91, 108, 113]; out-states=[110, 127, 31, 40, 13]; Props=
+State id=110: name=(5,false,2,5); in-states=[92, 109, 113]; out-states=[128, 32, 43, 14]; Props=
+State id=111: name=(5,false,3,5); in-states=[93]; out-states=[129, 33, 46, 15]; Props=
+State id=112: name=(5,false,4,5); in-states=[94, 112]; out-states=[112, 113, 130, 34, 49, 16]; Props=
+State id=113: name=(5,false,5,5); in-states=[95, 112]; out-states=[114, 110, 109, 131, 35, 52, 17]; Props=
+State id=114: name=(5,false,6,5); in-states=[96, 113]; out-states=[115, 132, 36, 55, 18]; Props=
+State id=115: name=(5,false,7,5); in-states=[97, 114]; out-states=[133, 37, 58, 19]; Props=
+State id=116: name=(5,false,8,5); in-states=[98]; out-states=[108, 134, 38, 61, 20]; Props=
+State id=117: name=(5,true,0,5); in-states=[99]; out-states=[118, 135, 39, 21]; Props=
+State id=118: name=(5,true,1,5); in-states=[100, 117, 122]; out-states=[119, 136, 40, 22]; Props=
+State id=119: name=(5,true,2,5); in-states=[101, 118, 122]; out-states=[137, 43, 23]; Props=
+State id=120: name=(5,true,3,5); in-states=[102]; out-states=[138, 46, 24]; Props=
+State id=121: name=(5,true,4,5); in-states=[103, 121]; out-states=[121, 122, 139, 49, 25]; Props=
+State id=122: name=(5,true,5,5); in-states=[104, 121]; out-states=[123, 119, 118, 140, 52, 26]; Props=
+State id=123: name=(5,true,6,5); in-states=[105, 122]; out-states=[124, 141, 55, 27]; Props=
+State id=124: name=(5,true,7,5); in-states=[106, 123]; out-states=[142, 58, 28]; Props=
+State id=125: name=(5,true,8,5); in-states=[107]; out-states=[143, 61, 29]; Props=
+State id=126: name=(6,false,0,6); in-states=[108, 134]; out-states=[127, 144, 153]; Props=
+State id=127: name=(6,false,1,6); in-states=[109, 126, 131]; out-states=[128, 145, 154]; Props=
+State id=128: name=(6,false,2,6); in-states=[110, 127, 131]; out-states=[146, 156]; Props=
+State id=129: name=(6,false,3,6); in-states=[111]; out-states=[147, 158]; Props=
+State id=130: name=(6,false,4,6); in-states=[112, 130]; out-states=[130, 131, 148, 160]; Props=
+State id=131: name=(6,false,5,6); in-states=[113, 130]; out-states=[132, 128, 127, 149, 162]; Props=
+State id=132: name=(6,false,6,6); in-states=[114, 131]; out-states=[133, 150, 164]; Props=
+State id=133: name=(6,false,7,6); in-states=[115, 132]; out-states=[151, 166]; Props=
+State id=134: name=(6,false,8,6); in-states=[116]; out-states=[126, 152, 168]; Props=
+State id=135: name=(6,true,0,6); in-states=[117]; out-states=[136, 153]; Props=
+State id=136: name=(6,true,1,6); in-states=[118, 135, 140]; out-states=[137, 154]; Props=
+State id=137: name=(6,true,2,6); in-states=[119, 136, 140]; out-states=[156]; Props=
+State id=138: name=(6,true,3,6); in-states=[120]; out-states=[158]; Props=
+State id=139: name=(6,true,4,6); in-states=[121, 139]; out-states=[139, 140, 160]; Props=
+State id=140: name=(6,true,5,6); in-states=[122, 139]; out-states=[141, 137, 136, 162]; Props=
+State id=141: name=(6,true,6,6); in-states=[123, 140]; out-states=[142, 164]; Props=
+State id=142: name=(6,true,7,6); in-states=[124, 141]; out-states=[166]; Props=
+State id=143: name=(6,true,8,6); in-states=[125]; out-states=[168]; Props=
+State id=144: name=(7,false,0,7); in-states=[126, 152]; out-states=[145]; Props=
+State id=145: name=(7,false,1,7); in-states=[127, 144, 149]; out-states=[146]; Props=
+State id=146: name=(7,false,2,7); in-states=[128, 145, 149]; out-states=[173]; Props=
+State id=147: name=(7,false,3,7); in-states=[129]; out-states=[174]; Props=
+State id=148: name=(7,false,4,7); in-states=[130, 148]; out-states=[148, 149]; Props=
+State id=149: name=(7,false,5,7); in-states=[131, 148]; out-states=[150, 146, 145]; Props=
+State id=150: name=(7,false,6,7); in-states=[132, 149]; out-states=[151]; Props=
+State id=151: name=(7,false,7,7); in-states=[133, 150]; out-states=[178]; Props=
+State id=152: name=(7,false,8,7); in-states=[134]; out-states=[144]; Props=
+State id=153: name=(7,true,0,7); in-states=[126, 135]; out-states=[154, 179]; Props=
+State id=154: name=(7,true,1,7); in-states=[127, 136, 153, 162]; out-states=[156, 180]; Props=
+State id=155: name=(7,true,1,8); in-states=[163]; out-states=[157]; Props=#final 
+State id=156: name=(7,true,2,7); in-states=[128, 137, 154, 162]; out-states=[159, 181]; Props=
+State id=157: name=(7,true,2,8); in-states=[155, 163]; out-states=[]; Props=
+State id=158: name=(7,true,3,7); in-states=[129, 138]; out-states=[161, 182]; Props=
+State id=159: name=(7,true,3,8); in-states=[156]; out-states=[]; Props=
+State id=160: name=(7,true,4,7); in-states=[130, 139, 160]; out-states=[160, 162, 183]; Props=
+State id=161: name=(7,true,4,8); in-states=[158, 161]; out-states=[161, 163]; Props=#final 
+State id=162: name=(7,true,5,7); in-states=[131, 140, 160]; out-states=[164, 156, 154, 184]; Props=
+State id=163: name=(7,true,5,8); in-states=[161]; out-states=[165, 157, 155]; Props=#final 
+State id=164: name=(7,true,6,7); in-states=[132, 141, 162]; out-states=[166, 185]; Props=
+State id=165: name=(7,true,6,8); in-states=[163]; out-states=[167]; Props=#final 
+State id=166: name=(7,true,7,7); in-states=[133, 142, 164]; out-states=[169, 186]; Props=
+State id=167: name=(7,true,7,8); in-states=[165]; out-states=[]; Props=
+State id=168: name=(7,true,8,7); in-states=[134, 143]; out-states=[187]; Props=
+State id=169: name=(7,true,8,8); in-states=[166]; out-states=[]; Props=
+State id=170: name=(8,false,0,8); in-states=[178]; out-states=[171, 1]; Props=
+State id=171: name=(8,false,1,8); in-states=[170, 175]; out-states=[172, 3]; Props=
+State id=172: name=(8,false,2,8); in-states=[171, 175]; out-states=[5]; Props=
+State id=173: name=(8,false,3,8); in-states=[146]; out-states=[6]; Props=
+State id=174: name=(8,false,4,8); in-states=[147, 174]; out-states=[174, 175, 7]; Props=
+State id=175: name=(8,false,5,8); in-states=[174]; out-states=[176, 172, 171, 8]; Props=
+State id=176: name=(8,false,6,8); in-states=[175]; out-states=[177, 9]; Props=
+State id=177: name=(8,false,7,8); in-states=[176]; out-states=[10]; Props=
+State id=178: name=(8,false,8,8); in-states=[151]; out-states=[170, 11]; Props=
+State id=179: name=(8,true,0,8); in-states=[153]; out-states=[180]; Props=#final 
+State id=180: name=(8,true,1,8); in-states=[154, 179, 184]; out-states=[181]; Props=#final 
+State id=181: name=(8,true,2,8); in-states=[156, 180, 184]; out-states=[]; Props=
+State id=182: name=(8,true,3,8); in-states=[158]; out-states=[]; Props=
+State id=183: name=(8,true,4,8); in-states=[160, 183]; out-states=[183, 184]; Props=#final 
+State id=184: name=(8,true,5,8); in-states=[162, 183]; out-states=[185, 181, 180]; Props=#final 
+State id=185: name=(8,true,6,8); in-states=[164, 184]; out-states=[186]; Props=#final 
+State id=186: name=(8,true,7,8); in-states=[166, 185]; out-states=[]; Props=
+State id=187: name=(8,true,8,8); in-states=[168]; out-states=[]; Props=
+Transitions:
+0 item2 2 1 
+0 item 12 1 
+1 item2 3 1 
+2 bid2 4 1 
+2 item 13 1 
+3 bid2 5 1 
+4 item 14 1 
+7 lowerBid2 7 1 
+7 higherBid2 8 1 
+8 timeout2 9 1 
+8 bid2 5 1 
+8 item2 3 1 
+9 payment2 10 1 
+11 new2 1 1 
+12 item2 13 1 
+12 bid 30 4/5 39 1/5 
+13 bid2 14 1 
+13 bid 31 4/5 40 1/5 
+14 bid 32 4/5 43 1/5 
+15 bid 33 4/5 46 1/5 
+16 lowerBid2 16 1 
+16 higherBid2 17 1 
+16 bid 34 4/5 49 1/5 
+17 timeout2 18 1 
+17 bid2 14 1 
+17 item2 13 1 
+17 bid 35 4/5 52 1/5 
+18 payment2 19 1 
+18 bid 36 4/5 55 1/5 
+19 bid 37 4/5 58 1/5 
+20 new2 12 1 
+20 bid 38 4/5 61 1/5 
+21 item2 22 1 
+21 bid 39 1 
+22 bid2 23 1 
+22 bid 40 1 
+23 bid 43 1 
+24 bid 46 1 
+25 lowerBid2 25 1 
+25 higherBid2 26 1 
+25 bid 49 1 
+26 timeout2 27 1 
+26 bid2 23 1 
+26 item2 22 1 
+26 bid 52 1 
+27 payment2 28 1 
+27 bid 55 1 
+28 bid 58 1 
+29 bid 61 1 
+30 item2 31 1 
+31 bid2 32 1 
+32 T 67 1 
+33 T 68 1 
+34 lowerBid2 34 1 
+34 higherBid2 35 1 
+35 timeout2 36 1 
+35 bid2 32 1 
+35 item2 31 1 
+36 payment2 37 1 
+37 T 72 1 
+38 new2 30 1 
+39 item2 40 1 
+39 T1 73 1 
+40 bid2 43 1 
+40 T1 74 1 
+41 bid2 44 1 
+41 T1 75 1 
+42 bid2 45 1 
+42 T1 75 1 
+43 T2 47 1 
+43 T1 76 1 
+44 T2 48 1 
+44 T1 77 1 
+45 T2 48 1 
+45 T1 77 1 
+46 T2 50 1 
+46 T1 78 1 
+47 T2 51 1 
+47 T1 79 1 
+48 T2 51 1 
+48 T1 79 1 
+49 lowerBid2 49 1 
+49 higherBid2 52 1 
+49 T1 80 1 
+50 lowerBid2 50 1 
+50 higherBid2 53 1 
+50 T1 81 1 
+51 lowerBid2 51 1 
+51 higherBid2 54 1 
+51 T1 81 1 
+52 timeout2 55 1 
+52 bid2 43 1 
+52 item2 40 1 
+52 T1 82 1 
+53 timeout2 56 1 
+53 bid2 44 1 
+53 item2 41 1 
+53 T1 83 1 
+54 timeout2 57 1 
+54 bid2 45 1 
+54 item2 42 1 
+54 T1 83 1 
+55 payment2 58 1 
+55 T1 84 1 
+56 payment2 59 1 
+56 T1 85 1 
+57 payment2 60 1 
+57 T1 85 1 
+58 T2 62 1 
+58 T1 86 1 
+59 T2 63 1 
+59 T1 87 1 
+60 T2 63 1 
+60 T1 87 1 
+61 T1 88 1 
+62 T1 89 1 
+63 T1 89 1 
+64 item2 65 1 
+65 bid2 66 1 
+66 T 93 1 
+67 T 94 1 
+68 lowerBid2 68 1 
+68 higherBid2 69 1 
+69 timeout2 70 1 
+69 bid2 66 1 
+69 item2 65 1 
+70 payment2 71 1 
+71 T 98 1 
+72 new2 64 1 
+73 item2 74 1 
+73 T1 99 1 
+74 bid2 76 1 
+74 T1 100 1 
+75 bid2 77 1 
+75 T1 100 1 
+76 T2 79 1 
+76 T1 101 1 
+77 T2 79 1 
+77 T1 101 1 
+78 T2 81 1 
+78 T1 102 1 
+79 T2 81 1 
+79 T1 102 1 
+80 lowerBid2 80 1 
+80 higherBid2 82 1 
+80 T1 103 1 
+81 lowerBid2 81 1 
+81 higherBid2 83 1 
+81 T1 103 1 
+82 timeout2 84 1 
+82 bid2 76 1 
+82 item2 74 1 
+82 T1 104 1 
+83 timeout2 85 1 
+83 bid2 77 1 
+83 item2 75 1 
+83 T1 104 1 
+84 payment2 86 1 
+84 T1 105 1 
+85 payment2 87 1 
+85 T1 105 1 
+86 T2 89 1 
+86 T1 106 1 
+87 T2 89 1 
+87 T1 106 1 
+88 T1 107 1 
+89 T1 107 1 
+90 item2 91 1 
+90 lowerBid 90 1 
+90 higherBid 108 1 
+91 bid2 92 1 
+91 lowerBid 91 1 
+91 higherBid 109 1 
+92 lowerBid 92 1 
+92 higherBid 110 1 
+93 lowerBid 93 1 
+93 higherBid 111 1 
+94 lowerBid2 94 1 
+94 higherBid2 95 1 
+94 lowerBid 94 1 
+94 higherBid 112 1 
+95 timeout2 96 1 
+95 bid2 92 1 
+95 item2 91 1 
+95 lowerBid 95 1 
+95 higherBid 113 1 
+96 payment2 97 1 
+96 lowerBid 96 1 
+96 higherBid 114 1 
+97 lowerBid 97 1 
+97 higherBid 115 1 
+98 new2 90 1 
+98 lowerBid 98 1 
+98 higherBid 116 1 
+99 item2 100 1 
+99 lowerBid 99 1 
+99 higherBid 117 1 
+100 bid2 101 1 
+100 lowerBid 100 1 
+100 higherBid 118 1 
+101 T2 102 1 
+101 lowerBid 101 1 
+101 higherBid 119 1 
+102 T2 103 1 
+102 lowerBid 102 1 
+102 higherBid 120 1 
+103 lowerBid2 103 1 
+103 higherBid2 104 1 
+103 lowerBid 103 1 
+103 higherBid 121 1 
+104 timeout2 105 1 
+104 bid2 101 1 
+104 item2 100 1 
+104 lowerBid 104 1 
+104 higherBid 122 1 
+105 payment2 106 1 
+105 lowerBid 105 1 
+105 higherBid 123 1 
+106 T2 107 1 
+106 lowerBid 106 1 
+106 higherBid 124 1 
+107 lowerBid 107 1 
+107 higherBid 125 1 
+108 item2 109 1 
+108 timeout 126 1 
+108 bid 30 4/5 39 1/5 
+108 item 12 1 
+109 bid2 110 1 
+109 timeout 127 1 
+109 bid 31 4/5 40 1/5 
+109 item 13 1 
+110 timeout 128 1 
+110 bid 32 4/5 43 1/5 
+110 item 14 1 
+111 timeout 129 1 
+111 bid 33 4/5 46 1/5 
+111 item 15 1 
+112 lowerBid2 112 1 
+112 higherBid2 113 1 
+112 timeout 130 1 
+112 bid 34 4/5 49 1/5 
+112 item 16 1 
+113 timeout2 114 1 
+113 bid2 110 1 
+113 item2 109 1 
+113 timeout 131 1 
+113 bid 35 4/5 52 1/5 
+113 item 17 1 
+114 payment2 115 1 
+114 timeout 132 1 
+114 bid 36 4/5 55 1/5 
+114 item 18 1 
+115 timeout 133 1 
+115 bid 37 4/5 58 1/5 
+115 item 19 1 
+116 new2 108 1 
+116 timeout 134 1 
+116 bid 38 4/5 61 1/5 
+116 item 20 1 
+117 item2 118 1 
+117 timeout 135 1 
+117 bid 39 1 
+117 item 21 1 
+118 bid2 119 1 
+118 timeout 136 1 
+118 bid 40 1 
+118 item 22 1 
+119 timeout 137 1 
+119 bid 43 1 
+119 item 23 1 
+120 timeout 138 1 
+120 bid 46 1 
+120 item 24 1 
+121 lowerBid2 121 1 
+121 higherBid2 122 1 
+121 timeout 139 1 
+121 bid 49 1 
+121 item 25 1 
+122 timeout2 123 1 
+122 bid2 119 1 
+122 item2 118 1 
+122 timeout 140 1 
+122 bid 52 1 
+122 item 26 1 
+123 payment2 124 1 
+123 timeout 141 1 
+123 bid 55 1 
+123 item 27 1 
+124 timeout 142 1 
+124 bid 58 1 
+124 item 28 1 
+125 timeout 143 1 
+125 bid 61 1 
+125 item 29 1 
+126 item2 127 1 
+126 payment 144 5/9 153 4/9 
+127 bid2 128 1 
+127 payment 145 5/9 154 4/9 
+128 payment 146 5/9 156 4/9 
+129 payment 147 5/9 158 4/9 
+130 lowerBid2 130 1 
+130 higherBid2 131 1 
+130 payment 148 5/9 160 4/9 
+131 timeout2 132 1 
+131 bid2 128 1 
+131 item2 127 1 
+131 payment 149 5/9 162 4/9 
+132 payment2 133 1 
+132 payment 150 5/9 164 4/9 
+133 payment 151 5/9 166 4/9 
+134 new2 126 1 
+134 payment 152 5/9 168 4/9 
+135 item2 136 1 
+135 payment 153 1 
+136 bid2 137 1 
+136 payment 154 1 
+137 payment 156 1 
+138 payment 158 1 
+139 lowerBid2 139 1 
+139 higherBid2 140 1 
+139 payment 160 1 
+140 timeout2 141 1 
+140 bid2 137 1 
+140 item2 136 1 
+140 payment 162 1 
+141 payment2 142 1 
+141 payment 164 1 
+142 payment 166 1 
+143 payment 168 1 
+144 item2 145 1 
+145 bid2 146 1 
+146 T 173 1 
+147 T 174 1 
+148 lowerBid2 148 1 
+148 higherBid2 149 1 
+149 timeout2 150 1 
+149 bid2 146 1 
+149 item2 145 1 
+150 payment2 151 1 
+151 T 178 1 
+152 new2 144 1 
+153 item2 154 1 
+153 T1 179 1 
+154 bid2 156 1 
+154 T1 180 1 
+155 bid2 157 1 
+156 T2 159 1 
+156 T1 181 1 
+158 T2 161 1 
+158 T1 182 1 
+160 lowerBid2 160 1 
+160 higherBid2 162 1 
+160 T1 183 1 
+161 lowerBid2 161 1 
+161 higherBid2 163 1 
+162 timeout2 164 1 
+162 bid2 156 1 
+162 item2 154 1 
+162 T1 184 1 
+163 timeout2 165 1 
+163 bid2 157 1 
+163 item2 155 1 
+164 payment2 166 1 
+164 T1 185 1 
+165 payment2 167 1 
+166 T2 169 1 
+166 T1 186 1 
+168 T1 187 1 
+170 item2 171 1 
+170 new 1 1 
+171 bid2 172 1 
+171 new 3 1 
+172 new 5 1 
+173 new 6 1 
+174 lowerBid2 174 1 
+174 higherBid2 175 1 
+174 new 7 1 
+175 timeout2 176 1 
+175 bid2 172 1 
+175 item2 171 1 
+175 new 8 1 
+176 payment2 177 1 
+176 new 9 1 
+177 new 10 1 
+178 new2 170 1 
+178 new 11 1 
+179 item2 180 1 
+180 bid2 181 1 
+183 lowerBid2 183 1 
+183 higherBid2 184 1 
+184 timeout2 185 1 
+184 bid2 181 1 
+184 item2 180 1 
+185 payment2 186 1 
+Transitions (421 totally).

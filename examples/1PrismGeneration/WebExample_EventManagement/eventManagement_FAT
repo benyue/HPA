@@ -1,0 +1,41 @@
+//
+NFA hpa = {
+states = {(0,false,0,0) (0,false,0,10) (0,true,0,10) (1,false,1,1) (2,false,2,2) (2,false,2,5) (2,false,2,6) (3,false,3,3) (4,false,4,4) (5,false,5,5) (6,false,6,6) (7,false,7,7) (8,false,8,8) (8,true,8,8) (8,true,9,9) (8,true,10,10) (9,false,9,9) (9,true,8,9) (9,true,9,10) (9,true,10,10) (10,false,10,10) (10,true,8,10) (10,true,9,10) (10,true,10,10) }
+//States.size()=24
+transitions = {
+(0,false,0,0)-Default->(1,false,1,1)
+(1,false,1,1)-Search->(3,false,3,3)
+(1,false,1,1)-Admin->(2,false,2,2)
+(2,false,2,2)-LogIn->(5,false,5,5)
+(2,false,2,2)-LoginError->(4,false,4,4)
+(4,false,4,4)-LogIn->(5,false,5,5)
+(4,false,4,4)-LoginError->(10,false,10,10)
+(5,false,5,5)-LogOut->(2,false,2,5)
+(5,false,5,5)-Event->(6,false,6,6)
+(6,false,6,6)-LogOut->(2,false,2,6)
+(6,false,6,6)-EventChoice->(7,false,7,7)
+(7,false,7,7)-IUD->(8,false,8,8)
+(7,false,7,7)-IUD->(8,true,8,8)
+(7,false,7,7)-Cancel->(6,false,6,6)
+(8,false,8,8)-T->(9,false,9,9)
+(8,true,8,8)-T2->(8,true,9,9)
+(8,true,8,8)-T1->(9,true,8,9)
+(8,true,9,9)-T2->(8,true,10,10)
+(8,true,9,9)-T1->(9,true,9,10)
+(8,true,10,10)-T1->(9,true,10,10)
+(9,false,9,9)-T->(10,false,10,10)
+(9,true,8,9)-T2->(9,true,9,10)
+(9,true,8,9)-T1->(10,true,8,10)
+(9,true,9,10)-T2->(9,true,10,10)
+(9,true,9,10)-T1->(10,true,9,10)
+(9,true,10,10)-T1->(10,true,10,10)
+(10,false,10,10)-new->(0,false,0,10)
+(10,true,8,10)-T2->(10,true,9,10)
+(10,true,9,10)-T2->(10,true,10,10)
+(10,true,10,10)-new->(0,true,0,10)
+}
+//Transitions.size()=30
+alphabet = {new Cancel LoginError LogIn Admin Default EventChoice T LogOut Search Event IUD T1 T2 }
+initial state = (0,false,0,0)
+final states = {(9,true,9,10) (9,true,10,10) (10,true,8,10) (10,true,9,10) (10,true,10,10) (8,true,10,10) }
+}
