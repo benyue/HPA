@@ -10,4 +10,8 @@ http://www.cs.uic.edu/~yben/tools/HPA/Manual_html/Manual.htm
 
 If you are not familiar with Git, please click "Download Zip" on the home page of the project to download everything including examples.
 
+[Current Work]
+
+Currently I am adding support of Hierarchical Prob Buchi Automata (HPBA) to the tool, and updating Javadoc to get ready for open source sharing. Also I am writing a paper on this tool. All the above will be done by end Oct 2016.
+
 Yue (Cindy) Ben
