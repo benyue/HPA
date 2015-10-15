@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Yue Ben">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<TITLE>HPA Verification Tool Manual - (Cindy) Yue Ben</TITLE>
+<link href="bootstrap_modified.css" rel="stylesheet">
+</HEAD>
+
+<BODY>
+<a name="top_blank"></a>
+<div class="container">
+
+<h1>HPA Veriﬁcation Tool Manual</h1>
+<h2><a href="http://www.cs.uic.edu/~yben/">Yue (Cindy) Ben</a></h2>
+<P>The HPA Veriﬁcation Tool is developed to present our research on Model Checking Failure Prone Open Systems Using Probabilistic Automata. Systems are modeled as Hierarchical Probabilistic Automata (HPA), and veriﬁed against our Forward and Backward algorithms.</P>
+<P><b><a href="https://github.com/benyue/HPA/">Project Website: https://github.com/benyue/HPA/</a></b></P>
+
+<h1>1 Installation</h1>
+There are several ways to install the HPA Demo tool.
+<ul>
+<li>Download JAR [Recommended]: Download ”HPA.jar” ﬁle, which is the single executable ﬁle of the HPA demo tool. Then double-click the JAR ﬁle to execute it.</li>
+<li>Download or Execute JNLP online: The ”.jnlp” ﬁle will connect to Internet server and download the latest JAR ﬁle. It's available at the following link:<br>
+<a href="http://www.cs.uic.edu/~yben/tools/HPA/dist/launch.html">http://www.cs.uic.edu/~yben/tools/HPA/dist/launch.html</a><br>
+Please click ”Launch” on the webpage from your web browser (IE recommended).
+</li>
+</ul>
+
+<h2>Preparing for Installation</h2>
+<P>Make sure you have Java Runtime Environment (JRE) installed, with a recommended version of 1.7.0 or higher.</P>
+<P><b>Bypass Java security blocking.</b> For all operating systems, the JAVA security settings may probably block the Jar program from running at the ﬁrst time, since it requires access to your local ﬁles to load and save HPA ﬁles. Please adjust the Java security settings accordingly by adding ”http://www.cs.uic.edu” in the exception website list.</P>
+<P><i>Reference: <a href="http://java.com/en/download/help/jcp_security.xml">http://java.com/en/download/help/jcp security.xml</a></i></P>
+<P><b>Bypass Mac OS security blocking.</b> If you are using a Mac OS, it wouldn’t allow this third-party app (the executable ﬁle, either the JAR ﬁle or JNLP ﬁle) to run at the ﬁrst time. Please bypass the security settings for the app: 1) In Finder, Control-click or right click the icon of the app. 2) Select Open from the top of contextual menu that appears. 3) Click Open in the dialog box. If prompted, enter an administrator name and password.</P>
+<P>Also, because of this Mac security setting, on-line direct access to the app will be blocked. Please DOWNLOAD the executable ﬁle (.JAR, or .JNLP) instead to run.</P>
+<P><i>Reference: please search ”How to open an app from a unidentiﬁed developer and exempt it from Gatekeeper” on webpage <a href="https://support.apple.com/en-us/HT202491">https://support.apple.com/en-us/HT202491</a></i></P>
+
+<a href="#top_blank">Back to Top</a><br>
+<h1>2 Manual</h1>
+<p>There are severals panels/tabs in the tool: <br>
+* The "HPA Analysis and Verification" panel (Section 2.1) is where an 1-HPA is loaded and then analyzed and verified for decidability and robustness problem;<br>
+* The "HPA Generation" panel (Section 2.2) interacts with user to create an 1-HPA, which is a relatively complicated process simulating the failure tolerance in web applications; <br>
+* The "HPA Generation from PRISM output" panel (Section 2.3) provides another way to generate 1-HPA, which is to load files of certain types from PRISM output and merge them into 1-HPA.</p>
+
+<p>To get started, please read the manual below or simply follow instructions and tips in the tool by hanging your mouse over labels, buttons, text ﬁelds, etc. Examples can be found on the project website. Or you can write your own PA and HPA ﬁles following corresponding formats to be introduced later.</p>
+
+<h2>2.1 HPA Analysis and Verification</h2>
+<P>The analysis and veriﬁcation panel of the tool implements the HPA-based veriﬁcation algorithms. It loads an HPA ﬁle, does simply validity checking and leveling, and executes different veriﬁcation algorithms.</P>
+<center>
+<IMG src="fig/tool_ui_ver.png" id="img1"><br>
+Figure 2.1: HPA Tool User Interface for Veriﬁcation
+</center>
+
+<h3>2.1.1 Loading HPA</h3>
+<P>Load HPA ﬁles in default formats, as plain text ﬁle, .txt, or .hpa ﬁles. Please refer to Section 2.1.2 for more details.</p>
+
+<h3>2.1.2 .hpa File Formatting</h3>
+<P>Our tool allows users to specify HPA in the form of adjacency lists with transitions labelled with input symbols and probabilities. It also allows deﬁnition of propositions over states and transitions. Below is part of a sample HPA ﬁle.</P>
+<P style="color:grey">//Comments are after "//", will be omitted in parsing<br>
+3 //First specify total number of states. Each state line starts with the state name (String), followed by propositions separated by #. Propositions are case insensitive.<br>
+s0 #INITIAL //special proposition #INITIAL or #INIT denotes the initial state.<br>
+s1<br>
+s2 #FINAL //A final state. Space is NOT required before # <br>
+//Transition Format:<br>
+//"source state id" input "end state id" probability distribution<br>
+//(sid) input (eid1) pr1 (eid2) pr2 ...<br>
+2 2Sitem 1 1<br>
+2 1Sbid 3 3/5 5 2/5<br>
+2 1Sbid_copy 3 0.6 5 0.4<br>
+....</P>
+
+<h3>2.1.3 Emptiness</h3>
+<P>To check the emptiness of the language L_(>x)(A), user needs to specify the probability threshold x, which is given a default value of 0.5 in the tool UI.</P>
+<P>To execute veriﬁcation, click on the ”forward” and/or ”backward” buttons.</P>
+
+<h3>2.1.4 Robustness</h3>
+<P>Exact robustness can be obtained in case backward algorithm converges on the HPA example; or else, the ”precision” speciﬁed by user will be used to decide a robustness range.</P>
+
+<a href="#top_blank">Back to Top</a><br>
+
+<h2>2.2 1-HPA Abstraction</h2>
+<center>
+<IMG src="fig/tool_ui_gen.png" id="img2">
+<br>Figure 2.2: HPA Tool User Interface for Model Abstraction
+</center>
+
+<P>To generate an 1-HPA, the tool loads one PA ﬁle as g_0, another PA ﬁle as g_p, and specify failure deﬁnitions. Then simply click ”Generate HPA!”, the program will generate an HPA. The way the program creates multi sessions is that it creates 2 different instances of g_0 with only one thing common - the T symbol.</P>
+<P>In detail, user loads one PA ﬁle as g_0, specify failure deﬁnitions, and load another PA ﬁle as g_p. Then simply click ”Generate HPA!”, the program will generate an HPA.</P>
+<P>The way the program creates multi sessions is that it creates 2 different instances of g_0 with only one thing common - the T symbol. Note that in each session, the set of states absorbing T symbols and the set of states absorbing external inputs have to be disjoint. Any violation will fail our abstraction process.</P>
+<P>We then compose each two sessions in the traditional way with partial order reduction, and also introduce failure on one session. Note the single sessions are all PA with only probability-1 transitions, but the composed session with failure is an 1-HPA, say g_(12f) , which has probabilistic distributions on the states where failure occurred.</P>
+
+<h3>2.2.1 PA File Formatting</h3>
+<P>Our tool allows users to specify PA in the form of adjacency lists with transitions labeled with input symbols and probabilities. Optionally, it also allows deﬁnition of propositions over states and transitions. All processes in the HPA Generation part of the tool share the same formatting for PA. Below is a sample PA ﬁle.</P>
+<P  style="color:grey">//Comments are after "//", will be omitted in parsing<br>
+3 //First specify total number of states. Each state line starts with the state name (String), followed by propositions separated by #<br>
+s0 #INITIAL //only one initial state<br>
+s1<br>
+s2 #FINAL //space is NOT required before # <br>
+//Transition format:<br>
+//source state name-input->end state name1,pr1 #prop1;end state name2,pr2 #prop2;...<br>
+s0-a->s1 //one end state, probability undefined, so pr=1<br>
+s0-b->s1,0.8 #SYNC;s2,0.2 //a probability distribution<br>
+s1-T->s2 #proposition-required-for-triggering</P>
+
+<h3>2.2.2 PA Attributes</h3>
+<h4>INITIAL state and FINAL state(s)</h4>
+For now it’s required there is one and only one INITIAL state, and the initial state has no incoming edge from other states than FINAL state(s) on “new” symbol.The number of FINAL states are not forced.<br>
+
+<h4>Propositions</h4>
+Simple string propositions are deﬁned to states and transitions in the process ﬁle. State propositions implies “required-for-sync” in property processes. Transition propositions are classiﬁed into two groups of “required-for-triggering” and “satisﬁed”, while all propositions deﬁned in PA ﬁles are required for triggering.<br>
+
+<h4>T symbol and T-transition</h4>
+The T symbol is a special input on transitions, different from external inputs. It’s used temporarily for timing and synchronizing purpose, and will be removed before generating HPA, thus in the ﬁnal HPA there will be no T symbols nor T-transitions. Each T symbol (i.e. one T-transition) denotes a time unit dealing with an external input, so T-transitions always come after external inputs. For now, only the T-transitions require and force synchronization in composing g_1 and g_2.<br>
+Cache is allowed, so it’s legal to deﬁne multiple external inputs and then add T-transitions in process ﬁles, e.g. 1-a->2-b->3-T->4-T->5-T->6.
+
+<h3>2.2.3 Composition with Partial Order Reduction - g_(12)</h3>
+<P>Partial order reduction is automatically applied while composing the two processes g_1 and g_2. Since g_1 and g_2 are identical, g_1 is always given priority in the reduction. We will use the notation “g_1 > g_2” to represent this priority. Thus whenever g_1 and g_2 are both active, g_1 will keep executing until reaching T-transitions or ﬁnal states. Specially, we have “new” symbols deﬁned for each process. Each FINAL state goes to the INITIAL state on a special input “new”, and beginning a new session executes non- deterministically. Thus when both servers are at FINAL states, both of them can start new sessions on their own “new”, ignoring priority. In the case priority of g_1 > g_2 is deﬁned, when g_1 is at FINAL state while g_2 is not, g_1 can start new session on “g_{1new}” when g_2 is not dealing with external inputs; when g_2 is at FINAL state while g_1 is not, g_1 will keep running, and no synchronization required since g_2 is inactive.</P>
+
+<h3>2.2.4 Failure Speciﬁcation</h3>
+<P>As stated before, we are considering probabilistic failure. For two concurrent processes, only one process may fail, thus the failure is deﬁned over the input and state of one single process only. After failure occurs, no more failure will occur. After both processes complete current sessions at failure, only the remaining process which did not fail will start new sessions. We provide two options for the overall system to recover from failure and complete remaining tasks. After failure and before starting new sessions: either one process completes ﬁrst then the other; or they each take one step interleavingly and execute one external input.For example, suppose g_2 may fail and the deﬁned after-failure priority is g_2 > g_1, then either: 1) g_2 will complete session ﬁrst, and then g_1 completes current session, and ﬁnally g_2, the server which didn’t fail, will start new sessions, and this generates g_{2f1}; or: 2) g_2 then g_1 will execute one external input alternatively, then g_2 start new sessions, and this generates g_2f1i. Therefore before generating HPA user needs to specify which process may fail, the failure deﬁnitions, which process has priority after failure, and whether they execute interleaving after failure.</P>
+<P>Next, We compose g_{12f} with an incorrectness property, which speciﬁes a safety property and is denoted by a deterministic PA g_p with only probability-1 transitions.</P>
+
+<h3>2.2.5 Composition with Property Automaton g_p</h3>
+<P>Currently we study only safety property, and in the implementation we use incorrectness property instead of correctness property. A property automaton g_p is deﬁned on one session, say g_1, but determinized for all symbols in g_1 and g_2. An ERROR state is deﬁned for determinization, g_p will stay at current state on g_2-only inputs, and go to ERROR state on g_1’s undeﬁned inputs.</P>
+<P>The new FINAL states after composition are those states where both g_p and g_1 (suppose g_p is deﬁned on g_1) are at FINAL states.</P>
+<P>Note property automaton can be deﬁned on either session, but without failure the property automaton won’t reach ﬁnal states, i.e. concurrent processes will not violate the property, thus generated HPA will have no ﬁnal states and robustness is always 1.</P>
+<P>Finally, remove all T symbols and do a normal determinization. Using the approach, we obtain a 1-level HPA.</P>
+
+<h3>2.2.6 Output Format</h3>
+<P>There are 3 types of output ﬁles: plain ﬁles (usually named with preﬁx ”ﬁle ”) containing every detail of a PA; ”FAT ” ﬁles contain less information, are for graphically presentation in an external tool called FAT; ”HPA ” ﬁles (with extension .hpa, .txt or as plain file) are ready to be loaded in the Veriﬁcation part of the tool.</P>
+<P><I>Reference for tool FAT: <a href="http://cl-informatik.uibk.ac.at/software/fat/">http://cl-informatik.uibk.ac.at/software/fat/</a></I></P>
+<p>The generated HPA will be saved in all those 3 types of files and stored in specified folder.</p>
+
+<a href="#top_blank">Back to Top</a><br>
+
+<h2>2.3 HPA Generation from PRISM Output</h2>
+<center>
+<IMG src="fig/tool_ui_gen_prism.png" id="img3">
+<br>Figure 2.3: HPA Tool User Interface for Model Generation from PRISM Output
+</center>
+
+<p>Using PRISM is easier to obtain probabilistic automata. We can build model in it, then analyze and output the model in different ways: transition matrix (.tra), labels(.lab), and state (.sta), etc.. In the HPA tool we have to merge several outputs obtained from the same PRISM model to get a desired HPA model.</p>
+
+<p><I>Reference: PRISM model checker website at <a href="http://www.prismmodelchecker.org/">http://www.prismmodelchecker.org/</a></I></p>
+
+<P>As presented in the figure above, to obtain HPA from PRISM output, a .tra (rows) file is required, which consists only transition matrix. Then a .lab file, which is the labeling/conﬁguration ﬁle, is recommended for adding propositions to states, including INITIAL and FINAL state(s). Finally, a .sta ﬁle providing details of states is optional. Without .sta file, states in generated HPA will have only integer ids, and have no meaningful names. This will not affect analysis nor verification against the HPA, but just information lost from original PRISM model.</p>
+
+<h3>2.3.1 Building a Qualified PRISM model for HPA</h3>
+<p>It's necessary to know about <a href ="http://www.prismmodelchecker.org/manual/ThePRISMLanguage/AllOnOnePage">the PRISM Language</a>, and how we abstracted HPA from web application in Section 2.2, before proceeding.</p>
+
+<p>We will introduce the model building using a very small example. Please download its PRISM model file <a href ="fig/w/w.prism">w.prism</a>, and open it with the PRISM model checker, or simply any text editor. This file contains all necessary instructions for creating HPA-compatible model, given as comments (after "//") in the model file.</p>
+
+<h3>2.3.2 Output PRISM Model</h3>
+<p>Recommended output commands at PRISM (using command line): <br>
+One is, <b>"prism #model.prism -exportmodel #opfile.tra:rows -exportmodel #opfile.sta"</b>; <br>
+The other is, <b>"prism #model.prism -exportmodel #opfile.lab"</b>. <br>
+</p>
+
+<p>For the PRISM model introduced the in last section, its corresponding outputs are <a href ="fig/w/w.tra">w.tra</a>, <a href ="fig/w/w.lab">w.lab</a>, and <a href ="fig/w/w.sta">w.sta</a>. </p>
+
+<P>All those files can be opened and modified using simple text editor. After loading them into the HPA tool's related panel, a non-determinized 1-HPA is obtained (<a href ="fig/w/w.hpa">.hpa file</a>), as presented below.</p>
+<center>
+<IMG src="fig/w/w_hpa_fat.png" id="img4">
+<br>Figure 2.3.2: HPA Obtained from PRISM Example
+</center>
+
+<h2>2.4 Comparison of Different HPA Generation Methodologies</h2>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-a0td{font-size:100%}
+.tg .tg-i331{font-size:100%;background-color:#96fffb}
+.tg .tg-y1im{font-weight:bold;font-size:100%;background-color:#96fffb}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-i331"></th>
+    <th class="tg-y1im">Using HPA Generator</th>
+    <th class="tg-y1im">Using PRISM and HPA_PRISM_Generator</th>
+  </tr>
+  <tr>
+    <td class="tg-y1im">Input File(s)</td>
+    <td class="tg-a0td">2 PA files (single process and property)</td>
+    <td class="tg-a0td">1 PRISM model containing 2 single processes and 1 property, and then 3 output (.tra(rows),.sta,.lab)</td>
+  </tr>
+  <tr>
+    <td class="tg-y1im">Output File(s)</td>
+    <td class="tg-a0td">1 HPA in .hpa, .fat and plain file formats</td>
+    <td class="tg-a0td">1 HPA in .hpa, and optionaly .fat and plain file formats</td>
+  </tr>
+  <tr>
+    <td class="tg-y1im">Easy Model Modification</td>
+    <td class="tg-a0td">Yes</td>
+    <td class="tg-a0td">Yes++</td>
+  </tr>
+  <tr>
+    <td class="tg-y1im">Easy Failure Configuration Update</td>
+    <td class="tg-a0td">Yes</td>
+    <td class="tg-a0td">No</td>
+  </tr>
+  <tr>
+    <td class="tg-y1im">Determinism</td>
+    <td class="tg-a0td">Yes</td>
+    <td class="tg-a0td">Maybe</td>
+  </tr>
+  <tr>
+    <td class="tg-y1im">Deadlock in HPA output</td>
+    <td class="tg-a0td">Yes (at least 1 -- the ERROR state)</td>
+    <td class="tg-a0td">Maybe</td>
+  </tr>
+  <tr>
+    <td class="tg-y1im">Complete Set of Final States</td>
+    <td class="tg-a0td">Yes</td>
+    <td class="tg-a0td">Maybe</td>
+  </tr>
+</table>
+
+<a href="#top_blank">Back to Top</a><br>
+<h1>3 A Complete HPA Veriﬁcation Example</h1>
+<P>Here we give a complete example including generating HPA and all its intermediate ﬁles, and veriﬁcation over the generated HPA as well. The example can be found at ”examples/s_small” on project website.</P>
+
+<h2>3.1 HPA Generation Example</h2>
+<center>
+<IMG src="fig/hpa/g0.png">
+<br>Figure 3.1-1: HPA Example: User Input Single Session g_0. Load ﬁle ”/examples/1Generation/s small/s small.txt” as single process in the Generation tab of the tool. The state with a right arrow is the initial state. Double circle denotes ﬁnal states. On edges are the input symbols. Probabilities are not presented in the graph.</center>
+
+<br>
+<center>
+<IMG src="fig/hpa/f.png">
+<br>Figure 3.1-2: HPA Example: Failure Speciﬁcation: g_1 failed, g_2 had priority after failure, and no interleaving behavior after failure.
+</center>
+
+<br>
+<center>
+<IMG src="fig/hpa/gp1S.png">
+<br>Figure 3.1-3: HPA Example: User Input property g_p. Load ﬁle ”/examples/1Generation/s small/s small property.txt” as property in the Generation tab of the tool. The property automaton is loaded then determinized by the program.
+</center>
+
+<br>
+<center>
+<IMG src="fig/hpa/g12.png">
+<br>Figure 3.1-4: HPA Example: intermediate process g_12, the composition of the two single processes.
+</center>
+
+<br>
+<center>
+<IMG src="fig/hpa/g21f.png">
+<br>Figure 3.1-5: HPA Example: intermediate process g_21f , with failure speciﬁcation applied to g_12.
+</center>
+
+<br>
+<center>
+<IMG src="fig/hpa/g21fp.png">
+<br>Figure 3.1-6: HPA Example: intermediate process g_21fp, the composition of g_21f and g_p determinized, synchronized on shared variables.
+</center>
+
+<br>
+<center>
+<IMG src="fig/hpa/g21fp_noT.png">
+<br>Figure 3.1-7: HPA Example: intermediate process g_21fp_noT, i.e. T removed from g_21fp.
+</center>
+
+<br>
+<center>
+<IMG src="fig/hpa/hpa.png">
+<br>Figure 3.1-8: HPA Example: hpa, i.e. determinized g21fp_noT.
+</center>
+
+<h2>3.2 HPA Veriﬁcation Example</h2>
+In the Veriﬁcation part of the HPA tool, simply load HPA and run. The log below is for the 1-HPA generated in last section. For non-empty results the tool will also give an example run.<br>
+<P>----------ROBUSTNESS ALGORITHM----------</P>
+<P>Note:L_UpperBound = 85899345920.</P>
+<P>Minimum empty is 2 / 5 at L=3, thus robustness value is 3 / 5.</P>
+<P>----------DECIDABILITY ALGORITHM: BACKWARD----------</P>
+<P>L(A) is empty with threshold x=4001 / 10000 within L=3. [Backward Convergence]</P>
+<P><SPAN class="ft25">*Time spent on backward algorithm: CPU time=15600100</P>
+<P>----------DECIDABILITY ALGORITHM: FORWARD----------</P>
+<P>L(A) is empty with threshold x=4001 / 10000 at L=2. [Forward Convergence]</P>
+<P>*Time spent on forward algorithm: CPU time=15600100</P>
+<P>----------DECIDABILITY ALGORITHM: FORWARD----------</P>
+<P>L(A) is non-empty with threshold x=39999 / 100000 at L=1 Accepted sequence and runs: [2, 3]&lt;-[1Sa]&lt;-[0]</P>
+<P>*Time spent on forward algorithm: CPU time=0</P>
+<P>----------DECIDABILITY ALGORITHM: BACKWARD----------</P>
+<P>L(A) is non-empty with threshold x=39999 / 100000 at L=2. Accepted sequence and runs: [0]->[1Sa]->[2, 3]</P>
+<P><SPAN class="ft25">*Time spent on backward algorithm: CPU time=0</P>
+
+<a href="#top_blank">Back to Top</a><br>
+	<small><I>Last updated:	<script type="text/javascript">
+	var currentDate = new Date()
+	var day = currentDate.getDate()
+	var month = currentDate.getMonth() + 1
+	var year = currentDate.getFullYear()
+	document.write("<b>" + month + "/" + day + "/" + year + "</b>")
+	</script> &copy;Cindy</I></small>
+</DIV><!--container-->
+</BODY>
+</HTML>

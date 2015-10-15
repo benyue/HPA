@@ -1,0 +1,18 @@
+5
+g0 w/ prefix  has 5 states, 5 transitions, and 4 symbols.
+Initial states: [0];
+Final states: [4]
+Symbols (4 totally):
+[a, new, b, T]
+States (5 totally):
+State id=0: value=0 out-trans=[0] inputs=[a] Prop=[INITIAL]
+State id=1: value=1 out-trans=[1] inputs=[T] Prop=[]
+State id=2: value=2 out-trans=[2] inputs=[b] Prop=[]
+State id=3: value=3 out-trans=[3] inputs=[T] Prop=[]
+State id=4: value=4 out-trans=[4] inputs=[new] Prop=[FINAL]
+Transitions (5 totally):
+Tran id=0: 0 - a -> 1 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=1: 1 - T -> 2 w/ pr=1 PropSatisfied=[] PropRequired=[required-for-triggering]
+Tran id=2: 2 - b -> 3 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=3: 3 - T -> 4 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=4: 4 - new -> 0 w/ pr=1 PropSatisfied=[] PropRequired=[]
