@@ -12,6 +12,6 @@ If you are not familiar with Git, please click "Download Zip" on the home page o
 
 [Current Work]
 
-Currently I am adding support of Hierarchical Prob Buchi Automata (HPBA) to the tool, and updating Javadoc to get ready for open source sharing. Also I am writing a paper on this tool. All the above will be done by end Oct 2015.
+Currently I am adding support of Hierarchical Prob Buchi Automata (HPBA) to the tool.
 
 Yue (Cindy) Ben
