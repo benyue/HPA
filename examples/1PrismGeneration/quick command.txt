@@ -1,0 +1,11 @@
+installation of prism from Cygwin command line:
+gunzip prism-4.3-src.tar.gz
+tar xf prism-4.3-src.tar
+cd prism-4.3-src
+make
+
+
+using prism.bat to output model:
+cd E:\cygwin64\home\Cindy\prism-4.3-src\bin
+prism 5p.prism -exportmodel 5p.tra:rows -exportmodel 5p.sta
+prism 5p.prism -exportmodel 5p.lab

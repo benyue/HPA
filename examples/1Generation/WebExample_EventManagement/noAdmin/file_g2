@@ -1,0 +1,36 @@
+11
+g2 w/ prefix 2S has 11 states, 17 transitions, and 12 symbols.
+Initial states: [0];
+Final states: [10]
+Symbols (12 totally):
+[2SEvent, 2SCancel, 2SDefault, 2SLoginError, 2SIUD, 2SAdmin, T, 2SLogIn, 2SSearch, 2SLogOut, 2Snew, 2SEventChoice]
+States (11 totally):
+State id=0: value=2SInitial out-trans=[0] inputs=[2SDefault] Prop=[2SINITIAL]
+State id=1: value=2SDefault out-trans=[1, 2] inputs=[2SAdmin, 2SSearch] Prop=[]
+State id=2: value=2SSearchTemp out-trans=[15] inputs=[T] Prop=[]
+State id=3: value=2SAdmin out-trans=[3, 4] inputs=[2SLoginError, 2SLogIn] Prop=[]
+State id=4: value=2SLogIn out-trans=[5, 6] inputs=[2SLoginError, 2SLogIn] Prop=[]
+State id=5: value=2SAdminMenu out-trans=[7, 13] inputs=[2SEvent, 2SLogOut] Prop=[]
+State id=6: value=2SAdmEvent out-trans=[8, 14] inputs=[2SLogOut, 2SEventChoice] Prop=[]
+State id=7: value=2SAdmEventChoice out-trans=[9, 10] inputs=[2SIUD, 2SCancel] Prop=[]
+State id=8: value=2SAdmEventTemp out-trans=[11] inputs=[T] Prop=[]
+State id=9: value=2SAdmEventTemp1 out-trans=[12] inputs=[T] Prop=[]
+State id=10: value=2SEnd out-trans=[16] inputs=[2Snew] Prop=[2SFINAL]
+Transitions (17 totally):
+Tran id=0: 2SInitial - 2SDefault -> 2SDefault w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=1: 2SDefault - 2SAdmin -> 2SAdmin w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=2: 2SDefault - 2SSearch -> 2SSearchTemp w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=3: 2SAdmin - 2SLoginError -> 2SLogIn w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=4: 2SAdmin - 2SLogIn -> 2SAdminMenu w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=5: 2SLogIn - 2SLoginError -> 2SEnd w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=6: 2SLogIn - 2SLogIn -> 2SAdminMenu w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=7: 2SAdminMenu - 2SEvent -> 2SAdmEvent w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=8: 2SAdmEvent - 2SEventChoice -> 2SAdmEventChoice w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=9: 2SAdmEventChoice - 2SCancel -> 2SAdmEvent w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=10: 2SAdmEventChoice - 2SIUD -> 2SAdmEventTemp w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=11: 2SAdmEventTemp - T -> 2SAdmEventTemp1 w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=12: 2SAdmEventTemp1 - T -> 2SEnd w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=13: 2SAdminMenu - 2SLogOut -> 2SAdmin w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=14: 2SAdmEvent - 2SLogOut -> 2SAdmin w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=15: 2SSearchTemp - T -> 2SEnd w/ pr=1 PropSatisfied=[2S] PropRequired=[]
+Tran id=16: 2SEnd - 2Snew -> 2SInitial w/ pr=1 PropSatisfied=[2S] PropRequired=[]

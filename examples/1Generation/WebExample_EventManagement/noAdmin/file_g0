@@ -1,0 +1,36 @@
+11
+g0 w/ prefix  has 11 states, 17 transitions, and 12 symbols.
+Initial states: [0];
+Final states: [10]
+Symbols (12 totally):
+[new, T, Cancel, LogOut, Search, LoginError, Event, IUD, LogIn, Admin, Default, EventChoice]
+States (11 totally):
+State id=0: value=Initial out-trans=[0] inputs=[Default] Prop=[INITIAL]
+State id=1: value=Default out-trans=[1, 2] inputs=[Search, Admin] Prop=[]
+State id=2: value=SearchTemp out-trans=[15] inputs=[T] Prop=[]
+State id=3: value=Admin out-trans=[3, 4] inputs=[LoginError, LogIn] Prop=[]
+State id=4: value=LogIn out-trans=[5, 6] inputs=[LoginError, LogIn] Prop=[]
+State id=5: value=AdminMenu out-trans=[7, 13] inputs=[LogOut, Event] Prop=[]
+State id=6: value=AdmEvent out-trans=[8, 14] inputs=[LogOut, EventChoice] Prop=[]
+State id=7: value=AdmEventChoice out-trans=[9, 10] inputs=[Cancel, IUD] Prop=[]
+State id=8: value=AdmEventTemp out-trans=[11] inputs=[T] Prop=[]
+State id=9: value=AdmEventTemp1 out-trans=[12] inputs=[T] Prop=[]
+State id=10: value=End out-trans=[16] inputs=[new] Prop=[FINAL]
+Transitions (17 totally):
+Tran id=0: Initial - Default -> Default w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=1: Default - Admin -> Admin w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=2: Default - Search -> SearchTemp w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=3: Admin - LoginError -> LogIn w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=4: Admin - LogIn -> AdminMenu w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=5: LogIn - LoginError -> End w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=6: LogIn - LogIn -> AdminMenu w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=7: AdminMenu - Event -> AdmEvent w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=8: AdmEvent - EventChoice -> AdmEventChoice w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=9: AdmEventChoice - Cancel -> AdmEvent w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=10: AdmEventChoice - IUD -> AdmEventTemp w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=11: AdmEventTemp - T -> AdmEventTemp1 w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=12: AdmEventTemp1 - T -> End w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=13: AdminMenu - LogOut -> Admin w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=14: AdmEvent - LogOut -> Admin w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=15: SearchTemp - T -> End w/ pr=1 PropSatisfied=[] PropRequired=[]
+Tran id=16: End - new -> Initial w/ pr=1 PropSatisfied=[] PropRequired=[]

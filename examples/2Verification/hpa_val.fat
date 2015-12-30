@@ -1,0 +1,23 @@
+NFA hpa = {
+states = {0 1 2 3 4 }
+//States.size()=5
+transitions = {
+0-a->1
+0-a->3
+0-b->4
+1-a->1
+1-a->2
+1-a->4
+1-b->4
+2-a->3
+2-b->4
+3-a->3
+3-b->3
+4-a->4
+4-b->4
+}
+//Transitions.size()=13
+alphabet = {a b }
+initial state = 0
+final states = {3 }
+}
