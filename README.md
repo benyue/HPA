@@ -1,17 +1,10 @@
 # HPA
-This is a demo tool for presenting the implementation of several model checking algorithms based on the model of Hierarchical Probabilistic Automata (HPA). Given a certain probability threshold, checking emptiness is decidable for 1-HPA but undecidable for k-HPA where k>=2. Our algorithms automatically decide the emptiness result for certain failure prone concurrent web examples, which are abstracted as models of HPA and with customized failures. 
+Hierarchical Probabilistic Automata Model Checker (HiPAM) is a tool based on algorithms for checking emptiness of languages accepted by 1-Hierarchical Probabilistic Automata (1-HPA). 1-HPA is a subclass of Probabilistic Automata (PA) in which the state space is stratified into two levels. The emptiness problem for 1-HPA has been shown to be decidable, while it is undecidable for general PA. HiPAM can be used to model check any open concurrent probabilistic systems that can be modeled as 1-HPA. In particular, it can be used to check the correctness of failure-prone open concurrent systems, under the condition that failures are modeled probabilistically and at most one failure occurs.  HiPAM takes as input, a synchronous open concurrent program, its failure specification together with a safety property specified by a deterministic automaton. It checks the correctness of the given system by constructing a 1-HPA and checking the emptiness of its language under the given probability threshold.
 
-[Manual]
-
-Web version provided. Please download the compressed manual folder at this website, or access online Manual at:
-http://www.cs.uic.edu/~yben/tools/HPA/Manual_html/Manual.htm
+HiPAM is platform-independent as it is written in Java, and it comes with complete documentation. It also has an interface providing compatibility with PRISM, a popular model checker for general probabilistic systems.
 
 [Download]
 
 If you are not familiar with Git, please click "Download Zip" on the home page of the project to download everything including examples.
-
-[Current Work]
-
-Currently I am adding support of Hierarchical Prob Buchi Automata (HPBA) to the tool.
 
 Yue (Cindy) Ben

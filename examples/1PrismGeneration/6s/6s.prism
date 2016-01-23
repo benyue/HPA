@@ -1,0 +1,106 @@
+mdp
+
+module g1 
+x1 : [0..10] init 0;
+f1 : bool init false;
+//-a-T-, a may fail
+[a1] x1=0 & f1=false->
+	2/3:(x1'=1) & (f1'=false)
+	+ 1/3:(x1'=10) & (f1'=true);
+[a1]x1=0 & f1=true -> (x1'=1);
+[T]x1 = 1 & f1= false -> (x1'=2);
+[T1]x1 = 10 & f1= true -> (x1'=2);
+//-b-T-, b may fail
+[b1] x1=2 & f1=false->
+	4/5:(x1'=3) & (f1'=false)
+	+ 1/5:(x1'=3)&(f1'=true);
+[b1]x1=2 & f1=true -> (x1'=3);
+[T]x1 = 3 & f1= false -> (x1'=4);
+[T1]x1 = 3 & f1= true -> (x1'=4);
+//-c-T-T-, c may fail
+[c1] x1=2 & f1=false->
+	4/5:(x1'=7) & (f1'=false)
+	+ 1/5:(x1'=7)&(f1'=true);
+[c1]x1=2 & f1=true -> (x1'=7);
+[T]x1 = 7 & f1= false -> (x1'=8);
+[T1]x1 = 7 & f1= true -> (x1'=8);
+[T]x1 = 8 & f1= false -> (x1'=9);
+[T1]x1 = 8 & f1= true -> (x1'=9);
+//-a-T-a-, a may fail
+[a1] x1=4 & f1=false->
+	4/5:(x1'=5) & (f1'=false)
+	+ 1/5:(x1'=5)&(f1'=true);
+[a1]x1=4 & f1=true -> (x1'=5);
+[T]x1 = 5 & f1= false -> (x1'=6);
+[T1]x1 = 5 & f1= true -> (x1'=6);
+[a1]x1=6->(x1'=5);
+endmodule
+
+module g2 
+x2 : [0..9] init 0;
+//-a-T-
+[a2] x2=0 -> (x2'=1);
+[T]x2 = 1 & f1= false-> (x2'=2);
+[T2]x2 = 1 & (f1= true) -> (x2'=2);
+//-b-T-
+[b2]x2=2->(x2'=3);
+[T]x2 = 3 & f1= false-> (x2'=4);
+[T2]x2 = 3 & (f1= true) -> (x2'=4);
+//-c-T-T-
+[c2]x1=2-> (x2'=7);
+[T]x2 = 7 & f1= false -> (x2'=8);
+[T2]x2 = 7 & (f1= true)-> (x2'=8);
+[T]x2 = 8 & f1= false-> (x2'=9);
+[T2]x2 = 8 & (f1= true) -> (x2'=9);
+
+endmodule
+
+module g3 = g2 [x2=x3, T2=T3] endmodule
+module g4 = g2 [x2=x4, T2=T4] endmodule
+module g5 = g2 [x2=x5, T2=T5] endmodule
+module g6 = g2 [x2=x6, T2=T6] endmodule
+
+module g1P
+x1p : [0..11] init 0;
+//-a-T-, catch a failure
+[a1] x1p=0 -> (x1p'=1);
+[T] x1p=1 -> (x1p'=2);
+[T1] x1p=1 -> (x1p'=2);
+[T2] x1p=1 -> (x1p'=2);
+[T3] x1p=1 -> (x1p'=2);
+[T4] x1p=1 -> (x1p'=2);
+[T11] x1p=1 -> (x1p'=2);
+[T] x1p=2 -> (x1p'=2);
+[T1] x1p=2 -> (x1p'=2);
+[T2] x1p=2 -> (x1p'=2);
+[T3] x1p=2 -> (x1p'=2);
+[T4] x1p=2 -> (x1p'=2);
+[T11] x1p=2 -> (x1p'=2);
+////-c-T-T-, catch c failure
+[c1]x1p=2-> (x1p'=10);
+[T]x1p = 10-> (x1p'=8);
+[T1]x1p = 10-> (x1p'=8);
+[T2]x1p = 10-> (x1p'=8);
+[T3]x1p = 10-> (x1p'=8);
+[T4]x1p = 10-> (x1p'=8);
+[T11]x1p = 10-> (x1p'=8);
+[T]x1p = 8-> (x1p'=9);
+[T1]x1p = 8-> (x1p'=9);
+[T2]x1p = 8-> (x1p'=9);
+[T3]x1p = 8-> (x1p'=9);
+[T4]x1p = 8-> (x1p'=9);
+//[T11]x1p = 8-> (x1p'=9);
+//[T]x1p = 9-> (x1p'=11);
+//[T1]x1p =9-> (x1p'=11);
+//[T2]x1p =9-> (x1p'=11);
+//[T3]x1p =9-> (x1p'=11);
+//[T4]x1p =9-> (x1p'=11);
+//[T11]x1p =9-> (x1p'=11);
+
+endmodule
+
+system
+g1||g2||g3||g4||g5||g6||g1P
+endsystem
+
+label "final" = (x1p=7 | x1p=9) & f1=true;

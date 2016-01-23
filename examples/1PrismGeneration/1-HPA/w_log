@@ -1,0 +1,42 @@
+
+HPA file: D:\Cindy\MyDocuments\Dropbox\EclipseWorkspace\HPA\examples\1PrismGeneration\1-HPA\w.hpa
+
+----------Load new HPA----------
+The given PA is a 1-level HPA with 23 states.
+Initial states (size 1): [0]
+Final states (size 2): [19, 22]
+Level 0 nodes: [0, 16, 1, 17, 2, 3, 4, 5, 6, 15]
+Level 1 nodes: all other states.
+Input symbols (size 7): [a1, a2, new2, new1, T, T1, T2]
+Warning: good witness sets neither generated nor loaded. Verification result will be inaccurate.
+----------DECIDABILITY ALGORITHM: FORWARD----------
+Using forward alg, L(A) is empty with threshold x=1 / 2 at L=0. [W Limitation]
+*CPU time spent on forward algorithm: 0 ns.
+
+----------DECIDABILITY ALGORITHM: BACKWARD----------
+Using bakcward alg, L(A) is empty with threshold x=1 / 2 within L=2. [Backward Convergence]
+*CPU time spent on backward algorithm: 0
+
+----------ROBUSTNESS ALGORITHM----------
+Note:L_UpperBound = 9223372036854775807.
+Using BKD alg: 
+Minimum empty is 0 at L=2, thus robustness is 1.
+Using FWD alg and binary search: 
+x found by forward algorithm is within (0,1 / 1024];
+Thus robustness falls within (1023 / 1024, 1] with xprecision=1 / 1000.
+*CPU time spent in calculating robustness: 0 ns.
+*CPU time to generate good WSs: 0 ns.
+WSs (WS0 size 9, WS1 size 90) output to file D:\Cindy\MyDocuments\Dropbox\EclipseWorkspace\HPA\examples\1PrismGeneration\1-HPA\w.ws
+
+----------DECIDABILITY ALGORITHM: FORWARD----------
+Using forward alg, L(A) is empty with threshold x=1 / 2 at L=6. [Forward Convergence]
+*CPU time spent on forward algorithm: 0 ns.
+
+----------DECIDABILITY ALGORITHM: FORWARD----------
+Using forward alg, L(A) is empty with threshold x=9 / 10 at L=2. [Forward Convergence]
+*CPU time spent on forward algorithm: 0 ns.
+
+----------DECIDABILITY ALGORITHM: FORWARD----------
+Using forward alg, L(A) is non-empty with threshold x=1 / 10 at L=1. [Val Termination]
+Accepted sequence and runs: [i=1]WS1 id=87<-[a1]<-[i=0]WS1 id=10
+*CPU time spent on forward algorithm: 15625000 ns.

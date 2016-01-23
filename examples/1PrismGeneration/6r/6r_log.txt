@@ -1,0 +1,31 @@
+----------DECIDABILITY ALGORITHM: FORWARD----------
+Using forward alg, L(A) is empty with threshold x=1 / 2 at L=11. [Forward Convergence]
+*CPU time spent on forward algorithm: 4968 750 000 ns.
+
+----------DECIDABILITY ALGORITHM: FORWARD----------
+Using forward alg, L(A) is non-empty with threshold x=1 / 10 at L=1. [Val Termination]
+Accepted sequence and runs: [i=1]WS1 id=13051<-[a1]<-[i=0]WS1 id=81
+*CPU time spent on forward algorithm: 406 250 000 ns.
+
+----------DECIDABILITY ALGORITHM: FORWARD----------
+Using forward alg, L(A) is empty with threshold x=9 / 10 at L=2. [Forward Convergence]
+*CPU time spent on forward algorithm: 1031 250 000 ns.
+
+----------DECIDABILITY ALGORITHM: BACKWARD----------
+Using bakcward alg, L(A) is empty with threshold x=9 / 10 within L=10. [Backward Convergence]
+*CPU time spent on backward algorithm: 11578640 625 000
+
+//Reload//
+
+----------DECIDABILITY ALGORITHM: BACKWARD----------
+Using backward alg, L(A) is non-empty with threshold x=1 / 10 at L=2.
+Accepted sequence and runs: [0]->[a1]->[12, 14]->[T4, new2, T5, T6, new1, c1, c2, b1, a1, b2, T, T2, T3]-> 
+*CPU time spent on backward algorithm: 11500343 750 000
+
+----------DECIDABILITY ALGORITHM: BACKWARD----------
+Using bakcward alg, L(A) is empty with threshold x=1 / 2 within L=10. [Backward Convergence]
+*CPU time spent on backward algorithm: 593750000
+
+----------DECIDABILITY ALGORITHM: BACKWARD----------
+Using bakcward alg, L(A) is empty with threshold x=9 / 10 within L=10. [Backward Convergence]
+*CPU time spent on backward algorithm: 109375000
