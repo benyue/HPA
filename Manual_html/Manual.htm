@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="Yue Ben">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<TITLE>HPA Verification Tool Manual - (Cindy) Yue Ben</TITLE>
+<TITLE>HPA Model Checker</TITLE>
 <link href="bootstrap_modified.css" rel="stylesheet">
 </HEAD>
 
@@ -12,16 +12,13 @@
 <a name="top_blank"></a>
 <div class="container">
 
-<h1>HPA Veriﬁcation Tool Manual</h1>
+<h1>HPA Model Checker Manual</h1>
 <h2><a href="http://www.cs.uic.edu/~yben/">Yue (Cindy) Ben</a></h2>
-<P>The HPA Veriﬁcation Tool is developed to present our research on Model Checking Failure Prone Open Systems Using Probabilistic Automata. Systems are modeled as Hierarchical Probabilistic Automata (HPA), and veriﬁed against our Forward and Backward algorithms.</P>
+<P>The HPA Model Checker is developed to present our research on Model Checking Failure-Prone Open Systems Using Probabilistic Automata. Systems are modeled as Hierarchical Probabilistic Automata (HPA), and veriﬁed using our Forward and Backward algorithms.</P>
 <P><b><a href="https://github.com/benyue/HPA/">Project Website: https://github.com/benyue/HPA/</a></b></P>
 
 <h1>1 Installation</h1>
-<ul>
-<li>Download "HPA.jar" ﬁle and execute it.</li>
-</li>
-</ul>
+<P>Download "HPA.jar" ﬁle and execute it.</P>
 
 <h2>Preparing for Installation</h2>
 <P>Make sure you have Java Runtime Environment (JRE) installed, with a recommended version of 1.7.0 or higher.</P>
@@ -140,7 +137,7 @@ Cache is allowed, so it’s legal to deﬁne multiple external inputs and then a
 
 <P>As presented in the figure above, to obtain HPA from PRISM output, a .tra (rows) file is required, which consists only transition matrix. Then a .lab file, which is the labeling/conﬁguration ﬁle, is recommended for adding propositions to states, including INITIAL and FINAL state(s). Finally, a .sta ﬁle providing details of states is optional. Without .sta file, states in generated HPA will have only integer ids, and have no meaningful names. This will not affect analysis nor verification against the HPA, but just information lost from original PRISM model.</p>
 
-<h3>2.3.1 Building a Qualified PRISM model for HPA</h3>
+<h3>2.3.1 Build PRISM models for HPA</h3>
 <p>It's necessary to know about <a href ="http://www.prismmodelchecker.org/manual/ThePRISMLanguage/AllOnOnePage">the PRISM Language</a>, and how we abstracted HPA from web application in Section 2.2, before proceeding.</p>
 
 <p>We will introduce the model building using a very small example. Please download its PRISM model file <a href ="fig/w/w.prism">w.prism</a>, and open it with the PRISM model checker, or simply any text editor. This file contains all necessary instructions for creating HPA-compatible model, given as comments (after "//") in the model file.</p>
