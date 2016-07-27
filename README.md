@@ -7,4 +7,8 @@ HiPAM is platform-independent as it is written in Java, and it comes with comple
 
 If you are not familiar with Git, please click "Download Zip" on the home page of the project to download everything including examples.
 
+[Source Code]
+
+Entrance: UI.UI_Menu
+
 Yue (Cindy) Ben
