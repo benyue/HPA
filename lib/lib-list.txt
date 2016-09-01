@@ -1,0 +1,13 @@
+Introduction to Programming in Java - Standard libraries
+//used for reading data from URL
+http://introcs.cs.princeton.edu/java/stdlib/
+//Please download the jar file from link
+http://introcs.cs.princeton.edu/java/stdlib/stdlib-package.jar
+
+Apache Commons Math 3-3.5 API
+//providing the fraction data structure
+http://commons.apache.org/proper/commons-math/
+
+Apache Commons IO 2.4 API
+//used to parse file name
+https://commons.apache.org/proper/commons-io/
